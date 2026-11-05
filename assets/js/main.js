@@ -507,7 +507,6 @@ function initResultsShowcaseParallax() {
   const bgImage = document.getElementById('resultsBgImage');
   const copyEl = document.getElementById('resultsCopy');
   const visualCard = document.getElementById('resultsVisualCard') || document.getElementById('resultsVisual');
-  const visualImg = document.getElementById('resultsVisualImg');
   const orbs = section.querySelectorAll('.results-ambient-orb');
 
   const mm = gsap.matchMedia();
@@ -556,51 +555,6 @@ function initResultsShowcaseParallax() {
         { y: 45, scale: 1.02, ease: 'none' },
         0
       );
-    }
-
-    // 2. Interactive Desktop Mousemove Camera Tracking
-    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (canHover) {
-      const qxVisual = visualCard ? gsap.quickTo(visualCard, 'x', { duration: 0.9, ease: 'power2.out' }) : null;
-      const qyVisual = visualCard ? gsap.quickTo(visualCard, 'y', { duration: 0.9, ease: 'power2.out' }) : null;
-      const qrVisual = visualCard ? gsap.quickTo(visualCard, 'rotation', { duration: 1.0, ease: 'power2.out' }) : null;
-
-      const qxCopy = copyEl ? gsap.quickTo(copyEl, 'x', { duration: 1.2, ease: 'power2.out' }) : null;
-      const qyCopy = copyEl ? gsap.quickTo(copyEl, 'y', { duration: 1.2, ease: 'power2.out' }) : null;
-
-      const onMouseMove = (e) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-
-        const relX = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
-        const relY = (e.clientY - rect.top) / rect.height - 0.5;
-
-        // Visual shifts with mouse with subtle 3D rotation
-        if (qxVisual) qxVisual(relX * 18);
-        if (qyVisual) qyVisual(relY * 14);
-        if (qrVisual) qrVisual(relX * 2.5);
-
-        // Copy shifts slightly opposite for depth separation
-        if (qxCopy) qxCopy(relX * -8);
-        if (qyCopy) qyCopy(relY * -5);
-      };
-
-      const onMouseLeave = () => {
-        if (qxVisual) qxVisual(0);
-        if (qyVisual) qyVisual(0);
-        if (qrVisual) qrVisual(0);
-
-        if (qxCopy) qxCopy(0);
-        if (qyCopy) qyCopy(0);
-      };
-
-      section.addEventListener('mousemove', onMouseMove);
-      section.addEventListener('mouseleave', onMouseLeave);
-
-      return () => {
-        section.removeEventListener('mousemove', onMouseMove);
-        section.removeEventListener('mouseleave', onMouseLeave);
-      };
     }
   });
 

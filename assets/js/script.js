@@ -67,7 +67,6 @@ function initHowItWorksExperience() {
   const introZone = document.querySelector('.hiw-intro-zone');
   const stepItems = document.querySelectorAll('.hiw-step-item');
   const lifestyleImages = document.querySelectorAll('.hiw-lifestyle-img');
-  const visualFrame = document.querySelector('.hiw-visual-frame');
   const bottomStepLabel = document.getElementById('hiwBottomStepLabel');
   const bottomCardTitle = document.getElementById('hiwBottomCardTitle');
   const bottomCardBadge = document.getElementById('hiwBottomCardBadge');
@@ -152,61 +151,6 @@ function initHowItWorksExperience() {
         ease: 'power3.inOut'
       }, 0.35);
     }
-  }
-
-  // =========================================================================
-  // AMBIENT GLOWS MULTI-PLANE SCROLL PARALLAX
-  // =========================================================================
-  const glowTopLeft = section.querySelector('.hiw-glow-top-left');
-  const glowCenterRight = section.querySelector('.hiw-glow-center-right');
-  const glowBottom = section.querySelector('.hiw-glow-bottom');
-
-  if (glowTopLeft) {
-    gsap.fromTo(glowTopLeft,
-      { y: -70, scale: 0.95 },
-      {
-        y: 85,
-        scale: 1.05,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.2
-        }
-      }
-    );
-  }
-  if (glowCenterRight) {
-    gsap.fromTo(glowCenterRight,
-      { y: 65, scale: 1.05 },
-      {
-        y: -85,
-        scale: 0.95,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.2
-        }
-      }
-    );
-  }
-  if (glowBottom) {
-    gsap.fromTo(glowBottom,
-      { y: -45 },
-      {
-        y: 75,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.2
-        }
-      }
-    );
   }
 
   // =========================================================================
@@ -324,73 +268,6 @@ function initHowItWorksExperience() {
         }
       });
     });
-
-    // Enhanced Parallax on the photography image stack & category indicator pill
-    const imageStack = document.querySelector('.hiw-image-stack');
-    const stepsRow = document.querySelector('.hiw-experience-row');
-    const visualTopPill = document.querySelector('.hiw-visual-top-pill');
-
-    if (imageStack && stepsRow) {
-      gsap.fromTo(imageStack,
-        { y: -38, scale: 1.05 },
-        {
-          y: 38,
-          scale: 1.0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: stepsRow,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2
-          }
-        }
-      );
-    }
-
-    if (visualTopPill && stepsRow) {
-      gsap.fromTo(visualTopPill,
-        { y: -20, x: -6 },
-        {
-          y: 24,
-          x: 6,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: stepsRow,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.0
-          }
-        }
-      );
-    }
-
-    // Interactive 3D Mouse Parallax on the Sticky Visual Frame
-    if (visualFrame && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      const qrxFrame = gsap.quickTo(visualFrame, 'rotationX', { duration: 1.0, ease: 'power2.out' });
-      const qryFrame = gsap.quickTo(visualFrame, 'rotationY', { duration: 1.0, ease: 'power2.out' });
-      const qxFrame = gsap.quickTo(visualFrame, 'x', { duration: 1.0, ease: 'power2.out' });
-      const qyFrame = gsap.quickTo(visualFrame, 'y', { duration: 1.0, ease: 'power2.out' });
-
-      const stickyContainer = visualFrame.closest('.hiw-visual-sticky-col') || visualFrame.parentElement;
-      stickyContainer.addEventListener('mousemove', (e) => {
-        const rect = visualFrame.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-        const relX = (e.clientX - rect.left) / rect.width - 0.5;
-        const relY = (e.clientY - rect.top) / rect.height - 0.5;
-
-        qrxFrame(relY * -6);
-        qryFrame(relX * 8);
-        qxFrame(relX * 10);
-        qyFrame(relY * 8);
-      });
-
-      stickyContainer.addEventListener('mouseleave', () => {
-        qrxFrame(0);
-        qryFrame(0);
-        qxFrame(0);
-        qyFrame(0);
-      });
-    }
 
     // Interactive Step Clicking: smooth scroll to center the selected step
     stepItems.forEach((stepItem, index) => {

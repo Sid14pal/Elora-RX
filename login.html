@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In to Patient Portal — ELORA RX Modern Telemedicine</title>
+  <meta name="description"
+    content="Securely sign in to your Elora Rx Patient Portal. Access doctor messages, prescription refills, and personalized clinical care plans.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 29C16 29 6 23 6 12C6 6 10 2 15 2C15.5 6 14 11 11 15C14 15 17.5 12.5 19 9C19 14.5 17 21 16 29Z' fill='%23a92237'/%3E%3Cpath d='M16 29C16 29 26 23 26 12C26 6 22 2 17 2C16.5 6 18 11 21 15C18 15 14.5 12.5 13 9C13 14.5 15 21 16 29Z' fill='%23c92e46' fill-opacity='0.85'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Lenis Smooth Scroll Stylesheet -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+  <!-- ========================================================
+       TOP NAVIGATION BAR
+       ======================================================== -->
+  <header class="site-header scrolled" id="siteHeader">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid hero-container px-3 px-md-4 px-xl-5">
+
+        <!-- Brand Logo -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html" id="brandLogo">
+          <span class="brand-name">ELORA RX</span>
+        </a>
+
+        <!-- Mobile Toggler (Triggers Modern Sidebar Drawer) -->
+        <button class="navbar-toggler border-0 p-2 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#mobileNavSidebar" aria-controls="mobileNavSidebar" aria-expanded="false"
+          aria-label="Toggle navigation" id="navbarTogglerBtn">
+          <span class="toggler-bar"></span>
+          <span class="toggler-bar"></span>
+          <span class="toggler-bar"></span>
+        </button>
+
+        <!-- Desktop Navbar Links -->
+        <div class="collapse navbar-collapse d-none d-lg-flex" id="navbarVellore">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-lg-center">
+
+            <!-- Treatments Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="index.html#popularTreatmentsSection"
+                id="treatmentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>Treatments</span>
+                <svg class="dropdown-caret-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-animated shadow-lg border-0" aria-labelledby="treatmentsDropdown">
+                <li>
+                  <a class="dropdown-item d-flex align-items-center gap-3 py-2" href="index.html#weight-loss"
+                    data-treatment="Weight Loss">
+                    <span class="dropdown-badge-icon rose-tint">
+                      <i class="bi bi-capsule"></i>
+                    </span>
+                    <div>
+                      <div class="dropdown-item-title">Weight Loss</div>
+                      <small class="text-muted">GLP-1 Semaglutide &amp; Tirzepatide</small>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center gap-3 py-2" href="index.html#hormone-health"
+                    data-treatment="Hormone Health">
+                    <span class="dropdown-badge-icon rose-tint">
+                      <i class="bi bi-flower1"></i>
+                    </span>
+                    <div>
+                      <div class="dropdown-item-title">Hormone Health</div>
+                      <small class="text-muted">Personalized HRT &amp; Balance</small>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center gap-3 py-2" href="index.html#hair-skin"
+                    data-treatment="Hair & Skin">
+                    <span class="dropdown-badge-icon rose-tint">
+                      <i class="bi bi-stars"></i>
+                    </span>
+                    <div>
+                      <div class="dropdown-item-title">Hair &amp; Skin</div>
+                      <small class="text-muted">Restoration &amp; Dermatologist Plans</small>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center gap-3 py-2" href="index.html#longevity"
+                    data-treatment="Longevity">
+                    <span class="dropdown-badge-icon rose-tint">
+                      <i class="bi bi-infinity"></i>
+                    </span>
+                    <div>
+                      <div class="dropdown-item-title">Longevity</div>
+                      <small class="text-muted">Cellular Vitality &amp; NAD+ Therapy</small>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider my-1">
+                </li>
+                <li>
+                  <a class="dropdown-item py-2 text-danger fw-semibold" href="index.html#all-treatments">
+                    View All Treatments &rarr;
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#how-it-works">How It Works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#about-us">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#benefits">Benefits</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#faqs">FAQs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#review">Review</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#contactus">Contact Us</a>
+            </li>
+          </ul>
+
+          <!-- Nav Right Buttons -->
+          <div class="nav-actions d-flex align-items-center gap-3">
+            <a href="index.html" class="btn btn-link nav-signin-btn text-decoration-none">
+              <i class="bi bi-arrow-left me-1"></i> Back to Home
+            </a>
+            <a href="index.html#qualifyModal" class="btn btn-crimson-pill d-inline-flex align-items-center gap-2" id="navGetStartedBtn">
+              <span>Get Started</span>
+              <span class="arrow-circle" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================
+       MODERN PROFESSIONAL MOBILE NAVIGATION SIDEBAR DRAWER
+       ======================================================== -->
+  <div class="offcanvas offcanvas-end mobile-nav-sidebar" tabindex="-1" id="mobileNavSidebar"
+    aria-labelledby="mobileNavSidebarLabel">
+
+    <!-- Sidebar Top Header -->
+    <div class="offcanvas-header mobile-sidebar-header d-flex align-items-center justify-content-between w-100">
+      <div class="d-flex align-items-center gap-2">
+        <span class="mobile-sidebar-brand" id="mobileNavSidebarLabel">ELORA RX</span>
+        <span class="mobile-sidebar-pill">CLINICAL</span>
+      </div>
+      <button type="button" class="btn-close-sidebar shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"
+        id="mobileSidebarCloseBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Sidebar Scrollable Body -->
+    <div class="offcanvas-body mobile-sidebar-body p-0">
+      <div class="mobile-sidebar-scroll-content px-3 py-3">
+
+        <!-- Section 1: Clinical Treatments -->
+        <div class="mobile-sidebar-section mb-4">
+          <div class="mobile-sidebar-eyebrow d-flex align-items-center gap-2 mb-2">
+            <span class="sidebar-eyebrow-dot"></span>
+            <span>CLINICAL TREATMENTS</span>
+          </div>
+
+          <div class="sidebar-treatment-cards d-flex flex-column gap-2">
+            <!-- Treatment Card 1: Weight Loss -->
+            <a href="index.html#weight-loss" class="sidebar-treatment-card text-decoration-none" data-treatment="Weight Loss">
+              <span class="sidebar-card-icon rose-tint">
+                <i class="bi bi-capsule"></i>
+              </span>
+              <div class="sidebar-card-info">
+                <div class="sidebar-card-title">Weight Loss</div>
+                <div class="sidebar-card-sub">GLP-1 Semaglutide &amp; Tirzepatide</div>
+              </div>
+              <span class="sidebar-card-arrow">
+                <i class="bi bi-chevron-right"></i>
+              </span>
+            </a>
+
+            <!-- Treatment Card 2: Hormone Health -->
+            <a href="index.html#hormone-health" class="sidebar-treatment-card text-decoration-none"
+              data-treatment="Hormone Health">
+              <span class="sidebar-card-icon rose-tint">
+                <i class="bi bi-flower1"></i>
+              </span>
+              <div class="sidebar-card-info">
+                <div class="sidebar-card-title">Hormone Health</div>
+                <div class="sidebar-card-sub">Personalized HRT &amp; Balance Plans</div>
+              </div>
+              <span class="sidebar-card-arrow">
+                <i class="bi bi-chevron-right"></i>
+              </span>
+            </a>
+
+            <!-- Treatment Card 3: Hair & Skin -->
+            <a href="index.html#hair-skin" class="sidebar-treatment-card text-decoration-none" data-treatment="Hair & Skin">
+              <span class="sidebar-card-icon rose-tint">
+                <i class="bi bi-stars"></i>
+              </span>
+              <div class="sidebar-card-info">
+                <div class="sidebar-card-title">Hair &amp; Skin</div>
+                <div class="sidebar-card-sub">Prescription Follicle &amp; Derma Care</div>
+              </div>
+              <span class="sidebar-card-arrow">
+                <i class="bi bi-chevron-right"></i>
+              </span>
+            </a>
+
+            <!-- Treatment Card 4: Longevity -->
+            <a href="index.html#longevity" class="sidebar-treatment-card text-decoration-none" data-treatment="Longevity">
+              <span class="sidebar-card-icon rose-tint">
+                <i class="bi bi-infinity"></i>
+              </span>
+              <div class="sidebar-card-info">
+                <div class="sidebar-card-title">Longevity &amp; Vitality</div>
+                <div class="sidebar-card-sub">Cellular Energy &amp; NAD+ Therapy</div>
+              </div>
+              <span class="sidebar-card-arrow">
+                <i class="bi bi-chevron-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Section 2: Explore Navigation Links -->
+        <div class="mobile-sidebar-section mb-4">
+          <div class="mobile-sidebar-eyebrow d-flex align-items-center gap-2 mb-2">
+            <span class="sidebar-eyebrow-dot"></span>
+            <span>EXPLORE</span>
+          </div>
+
+          <div class="sidebar-nav-list d-flex flex-column gap-1">
+            <a href="index.html#how-it-works" class="sidebar-nav-item text-decoration-none">
+              <span class="d-flex align-items-center gap-3">
+                <span class="sidebar-nav-icon"><i class="bi bi-lightning-charge"></i></span>
+                <span class="sidebar-nav-label">How It Works</span>
+              </span>
+              <i class="bi bi-chevron-right sidebar-nav-chevron"></i>
+            </a>
+
+            <a href="index.html#popularTreatmentsSection" class="sidebar-nav-item text-decoration-none">
+              <span class="d-flex align-items-center gap-3">
+                <span class="sidebar-nav-icon"><i class="bi bi-grid"></i></span>
+                <span class="sidebar-nav-label">Popular Products</span>
+              </span>
+              <i class="bi bi-chevron-right sidebar-nav-chevron"></i>
+            </a>
+
+            <a href="index.html#about-us" class="sidebar-nav-item text-decoration-none">
+              <span class="d-flex align-items-center gap-3">
+                <span class="sidebar-nav-icon"><i class="bi bi-graph-up-arrow"></i></span>
+                <span class="sidebar-nav-label">Proven Results</span>
+              </span>
+              <i class="bi bi-chevron-right sidebar-nav-chevron"></i>
+            </a>
+
+            <a href="index.html#faqs" class="sidebar-nav-item text-decoration-none">
+              <span class="d-flex align-items-center gap-3">
+                <span class="sidebar-nav-icon"><i class="bi bi-question-circle"></i></span>
+                <span class="sidebar-nav-label">FAQs</span>
+              </span>
+              <i class="bi bi-chevron-right sidebar-nav-chevron"></i>
+            </a>
+
+            <a href="index.html#contactus" class="sidebar-nav-item text-decoration-none">
+              <span class="d-flex align-items-center gap-3">
+                <span class="sidebar-nav-icon"><i class="bi bi-envelope"></i></span>
+                <span class="sidebar-nav-label">Contact Us</span>
+              </span>
+              <i class="bi bi-chevron-right sidebar-nav-chevron"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section 3: Bottom Action Panel -->
+      <div class="mobile-sidebar-footer px-3 py-3 border-top">
+        <a href="index.html#qualifyModal"
+          class="btn btn-crimson-pill w-100 d-inline-flex align-items-center justify-content-between mb-2">
+          <span>Get Started Today</span>
+          <span class="arrow-circle" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+
+        <a href="index.html" class="btn btn-outline-dark-soft w-100 text-decoration-none text-center mb-3 py-2 fw-medium">
+          Back to Landing Page
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MAIN LOGIN / PORTAL CONTENT
+       ======================================================== -->
+  <main class="login-page-main">
+    <!-- Ambient Luminous Background Orbs -->
+    <div class="login-ambient-wrapper" aria-hidden="true">
+      <div class="login-ambient-orb orb-1"></div>
+      <div class="login-ambient-orb orb-2"></div>
+    </div>
+
+    <div class="container-fluid hero-container px-3 px-md-4 px-xl-5 login-container-inner">
+
+      <!-- Breadcrumbs -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb mb-0" style="font-size: 0.85rem; font-weight: 500;">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none" style="color: var(--color-text-muted);">Home</a></li>
+          <li class="breadcrumb-item"><span style="color: var(--color-text-muted);">Patient Portal</span></li>
+          <li class="breadcrumb-item active" aria-current="page" style="color: var(--color-brand-primary); font-weight: 600;">Sign In</li>
+        </ol>
+      </nav>
+
+      <!-- Main Login Card: Two-Column Editorial Telemedicine Split -->
+      <div class="login-split-wrapper">
+        <div class="row g-0">
+
+          <!-- Left Column: Interactive Form Panel -->
+          <div class="col-12 col-lg-6">
+            <div class="login-form-panel">
+
+              <!-- Eyebrow & Title -->
+              <div class="login-header-group">
+                <div class="section-eyebrow login-eyebrow">
+                  <span class="eyebrow-dot" aria-hidden="true"></span>
+                  <span class="eyebrow-text">SECURE PATIENT PORTAL</span>
+                </div>
+                <h1 class="login-title">Sign in to your care portal.</h1>
+                <p class="login-subtitle">
+                  Manage your clinical protocols, physician messaging, treatment refills, and biomarker history.
+                </p>
+              </div>
+
+              <!-- Portal Selector Tabs (Patient vs Care Team) -->
+              <div class="login-role-tabs" role="tablist">
+                <button type="button" class="login-role-tab active" id="tabPatient" role="tab" aria-selected="true">
+                  <i class="bi bi-person-check-fill" aria-hidden="true"></i>
+                  <span>Patient Portal</span>
+                </button>
+                <button type="button" class="login-role-tab" id="tabProvider" role="tab" aria-selected="false">
+                  <i class="bi bi-hospital" aria-hidden="true"></i>
+                  <span>Care Team &amp; MD</span>
+                </button>
+              </div>
+
+              <!-- Social Fast Auth Grid -->
+              <div class="login-sso-grid">
+                <button type="button" class="btn-login-sso" onclick="handleSocialAuth('Google')">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                  </svg>
+                  <span>Google</span>
+                </button>
+
+                <button type="button" class="btn-login-sso" onclick="handleSocialAuth('Apple')">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.45c.66-.82 1.11-1.96.99-3.1-.96.04-2.18.66-2.85 1.48-.59.72-1.11 1.87-.97 2.99 1.07.08 2.17-.55 2.83-1.37z"/>
+                  </svg>
+                  <span>Apple ID</span>
+                </button>
+              </div>
+
+              <!-- Divider -->
+              <div class="login-divider-row">
+                <span>or sign in with email</span>
+              </div>
+
+              <!-- Dynamic Alert Notice -->
+              <div class="alert alert-danger py-2 px-3 small rounded-3 d-none mb-3" id="loginAlertBox" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <span id="loginAlertMsg">Invalid credentials. Please verify your details.</span>
+              </div>
+
+              <!-- Login Form -->
+              <form id="portalLoginForm" onsubmit="event.preventDefault(); submitLoginForm();">
+
+                <!-- Email Input Group -->
+                <div class="login-input-wrap">
+                  <input type="email" class="login-input-field" id="loginEmail" placeholder="name@example.com"
+                    autocomplete="email" required>
+                  <i class="bi bi-envelope login-input-icon" aria-hidden="true"></i>
+                </div>
+
+                <!-- Password Input Group with Toggle -->
+                <div class="login-input-wrap">
+                  <input type="password" class="login-input-field" id="loginPassword" placeholder="Enter your password"
+                    autocomplete="current-password" required>
+                  <i class="bi bi-lock login-input-icon" aria-hidden="true"></i>
+                  <button type="button" class="login-pwd-toggle" id="togglePasswordBtn" aria-label="Toggle password visibility">
+                    <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                  </button>
+                </div>
+
+                <!-- Remember Me & Forgot Password Row -->
+                <div class="login-meta-row">
+                  <label class="login-remember-label">
+                    <input type="checkbox" id="rememberMeCheckbox" checked>
+                    <span>Remember this device</span>
+                  </label>
+                  <a href="#forgotPassword" class="login-forgot-link" onclick="handleForgotPassword(event)">
+                    Forgot password?
+                  </a>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-login-submit" id="loginSubmitBtn">
+                  <span id="loginBtnLabel">Sign In to Care Portal</span>
+                  <span class="cta-arrow-circle" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+
+              </form>
+
+              <!-- Security & HIPAA Badge -->
+              <div class="login-security-badge">
+                <i class="bi bi-shield-check" aria-hidden="true"></i>
+                <span>256-Bit SSL Encrypted • HIPAA Compliant Patient Network</span>
+              </div>
+
+              <!-- New Patient Switch Link -->
+              <div class="login-switch-footer">
+                Don't have an active protocol yet?
+                <a href="index.html#qualifyModal">Check Treatment Eligibility &rarr;</a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right Column: Editorial Telehealth Showcase Panel -->
+          <div class="col-12 col-lg-6 d-none d-lg-flex">
+            <div class="login-showcase-panel w-100">
+
+              <!-- Ambient Glow Accent -->
+              <div class="login-showcase-ambient-glow" aria-hidden="true"></div>
+
+              <!-- Showcase Header -->
+              <div class="login-showcase-header">
+                <div class="section-eyebrow is-dark login-showcase-eyebrow">
+                  <span class="eyebrow-dot" aria-hidden="true"></span>
+                  <span class="eyebrow-text">PHYSICIAN-LED TELEHEALTH</span>
+                </div>
+                <h2 class="login-showcase-title">Your complete care protocol in one unified portal.</h2>
+                <p class="login-showcase-desc">
+                  Access direct physician messaging, dosage titrations, progress biomarkers, and discreet auto-refills delivered directly to your door.
+                </p>
+              </div>
+
+              <!-- Visual Frame with Doctor Image & Badges -->
+              <div class="login-showcase-visual">
+                <div class="login-doctor-card-frame">
+                  <img src="assets/images/faq.png" alt="Board-Certified US Physician consulting online"
+                    class="login-doctor-img" loading="lazy">
+
+                  <!-- Floating Live Indicator Badge -->
+                  <div class="login-floating-badge-top">
+                    <span class="login-live-pulse-dot" aria-hidden="true"></span>
+                    <span>100% Online Physician Oversight</span>
+                  </div>
+
+                  <!-- Floating Patient Rating Badge -->
+                  <div class="login-floating-badge-bottom">
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <span>4.9 / 5.0 (14,000+ Reviews)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Patient Editorial Quote Card -->
+              <div class="login-patient-quote-box">
+                <p class="login-quote-text">
+                  “Having my dedicated clinician review my lab work and calibrate my dosage without clinic visits has completely transformed my wellness routine.”
+                </p>
+                <div class="login-quote-author">
+                  <span class="login-author-name">David L., Austin, TX</span>
+                  <span class="login-author-meta">Verified Patient • 8 Months Active</span>
+                </div>
+              </div>
+
+              <!-- Trust Pills Grid -->
+              <div class="login-trust-badges-row">
+                <span class="login-trust-pill-item">
+                  <i class="bi bi-patch-check-fill" aria-hidden="true"></i> US Board-Certified MDs
+                </span>
+                <span class="login-trust-pill-item">
+                  <i class="bi bi-shield-lock-fill" aria-hidden="true"></i> HIPAA Safeguards
+                </span>
+                <span class="login-trust-pill-item">
+                  <i class="bi bi-geo-alt-fill" aria-hidden="true"></i> Licensed in 50 States
+                </span>
+                <span class="login-trust-pill-item">
+                  <i class="bi bi-box-seam-fill" aria-hidden="true"></i> Discreet US Delivery
+                </span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================
+       PREMIUM THEMED SITE FOOTER (DARK EDITORIAL TELEMEDICINE)
+       ======================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <!-- Ambient Glow Blobs -->
+    <div class="footer-ambient-glow-wrapper" aria-hidden="true">
+      <div class="footer-ambient-glow glow-1"></div>
+      <div class="footer-ambient-glow glow-2"></div>
+    </div>
+
+    <div class="container-fluid hero-container px-3 px-md-4 px-xl-5 position-relative">
+
+      <!-- Upper Newsletter Banner -->
+      <div class="footer-cta-card">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <div class="footer-cta-eyebrow section-eyebrow is-dark mb-3">
+              <span class="eyebrow-dot" aria-hidden="true"></span>
+              <span class="eyebrow-text">PHYSICIAN-GUIDED CARE</span>
+            </div>
+            <h3 class="footer-cta-headline section-blur-heading" id="footerCtaHeadline">
+              Elevate your daily vitality with tailored clinical protocols.
+            </h3>
+          </div>
+          <div class="col-lg-6">
+            <form class="footer-newsletter-form" onsubmit="event.preventDefault(); window.submitNewsletter?.(event);">
+              <div class="newsletter-input-group">
+                <input type="email" class="form-control newsletter-input" placeholder="Enter your email address"
+                  aria-label="Email address for wellness updates" required>
+                <button type="submit" class="btn btn-footer-subscribe">
+                  <span>Subscribe</span>
+                  <i class="bi bi-arrow-right ms-1"></i>
+                </button>
+              </div>
+              <div class="newsletter-privacy-note mt-2">
+                <i class="bi bi-shield-check text-success me-1"></i> No spam. Unsubscribe anytime.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Footer Navigation Grid -->
+      <div class="footer-main-grid py-5">
+        <div class="row g-4 g-lg-5">
+
+          <!-- Col 1: Brand & Clinical Accreditation -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <a href="index.html" class="footer-brand d-inline-flex align-items-center gap-2 mb-3">
+              <span class="footer-brand-name">ELORA RX</span>
+            </a>
+            <p class="footer-brand-desc mb-4">
+              Modern physician-directed telemedicine. Transforming personal longevity, weight optimization, hormone
+              vitality, and restorative health through evidence-backed compounding science.
+            </p>
+            <div class="footer-trust-badges d-flex flex-wrap gap-2 mb-4">
+              <span class="footer-trust-pill">
+                <i class="bi bi-shield-fill-check text-success"></i> HIPAA Compliant
+              </span>
+              <span class="footer-trust-pill">
+                <i class="bi bi-patch-check-fill text-danger"></i> Board-Certified US MDs
+              </span>
+              <span class="footer-trust-pill">
+                <i class="bi bi-box-seam text-info"></i> Discreet US Delivery
+              </span>
+            </div>
+            <div class="footer-social-links d-flex align-items-center gap-2">
+              <a href="#" class="footer-social-btn" aria-label="Follow us on Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="footer-social-btn" aria-label="Connect on LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="footer-social-btn" aria-label="Follow us on X"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" class="footer-social-btn" aria-label="Watch on YouTube"><i class="bi bi-youtube"></i></a>
+            </div>
+          </div>
+
+          <!-- Col 2: Treatments & Therapies -->
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="footer-col-title">Treatments</h4>
+            <ul class="footer-nav-list list-unstyled mb-0">
+              <li><a href="index.html#weight-loss" class="footer-nav-link">GLP-1 Weight Loss</a></li>
+              <li><a href="index.html#weight-loss" class="footer-nav-link">Tirzepatide Agonist</a></li>
+              <li><a href="index.html#hormone-health" class="footer-nav-link">Hormone Health &amp; HRT</a></li>
+              <li><a href="index.html#hair-skin" class="footer-nav-link">Hair &amp; Scalp Growth</a></li>
+              <li><a href="index.html#longevity" class="footer-nav-link">Longevity &amp; NAD+</a></li>
+              <li><a href="index.html#sexual-health" class="footer-nav-link">Sexual Health Vitality</a></li>
+              <li><a href="index.html#sleep-issue" class="footer-nav-link">Restorative Sleep Aid</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Company & Platform -->
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="footer-col-title">Company</h4>
+            <ul class="footer-nav-list list-unstyled mb-0">
+              <li><a href="index.html#how-it-works" class="footer-nav-link">How It Works</a></li>
+              <li><a href="index.html#careTeamSection" class="footer-nav-link">Our Medical Team</a></li>
+              <li><a href="index.html#popularTreatmentsSection" class="footer-nav-link">Popular Products</a></li>
+              <li><a href="index.html#customerReviewsSection" class="footer-nav-link">Patient Reviews</a></li>
+              <li><a href="index.html#faqs" class="footer-nav-link">FAQ &amp; Help Center</a></li>
+              <li><a href="index.html#qualifyModal" class="footer-nav-link highlight-link">Free Assessment</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Legal & Governance -->
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="footer-col-title">Clinical &amp; Legal</h4>
+            <ul class="footer-nav-list list-unstyled mb-0">
+              <li><a href="#" class="footer-nav-link">Telehealth Consent</a></li>
+              <li><a href="#" class="footer-nav-link">Privacy Policy</a></li>
+              <li><a href="#" class="footer-nav-link">Terms of Service</a></li>
+              <li><a href="#" class="footer-nav-link">HIPAA Statement</a></li>
+              <li><a href="#" class="footer-nav-link">Pharmacy Compounding</a></li>
+              <li><a href="#" class="footer-nav-link">Patient Rights</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 5: Clinical Support & Hours -->
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="footer-col-title">Care Support</h4>
+            <div class="footer-contact-block mb-3">
+              <span class="footer-contact-label">Clinical Hours</span>
+              <p class="footer-contact-val">7 Days a Week<br>8:00 AM – 9:00 PM EST</p>
+            </div>
+            <div class="footer-contact-block mb-3">
+              <span class="footer-contact-label">Patient Concierge</span>
+              <a href="mailto:care@elorarx.com" class="footer-contact-link">care@elorarx.com</a>
+            </div>
+            <div class="footer-contact-block mb-3">
+              <span class="footer-contact-label">Toll-Free Patient Line</span>
+              <a href="tel:18005553567" class="footer-contact-link">1 (800) 555-ELORA</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Medical Disclaimer Box -->
+      <div class="footer-disclaimer-box my-4">
+        <p class="footer-disclaimer-text mb-0">
+          <strong>Medical Disclaimer:</strong> The information provided on this platform is for informational purposes
+          only and is not intended as a substitute for professional medical advice, diagnosis, or treatment. All
+          prescription therapies require an online evaluation by a licensed US healthcare provider. Compounded
+          medications are prepared by licensed state pharmacies and are not FDA-approved as finished goods. In the event
+          of a medical emergency, please call 911 immediately.
+        </p>
+      </div>
+
+      <!-- Bottom Copyright & Security Bar -->
+      <div class="footer-bottom-bar d-flex flex-wrap align-items-center justify-content-between py-4">
+        <div class="footer-copyright-text">
+          &copy; 2026 ELORA RX Telehealth Group Inc. All rights reserved. Registered 503A / 503B Partner Facilities.
+        </div>
+        <div class="footer-security-notes d-flex align-items-center gap-3">
+          <span><i class="bi bi-lock-fill text-success"></i> 256-bit SSL</span>
+          <span><i class="bi bi-shield-check text-primary"></i> LegitScript Certified</span>
+          <span><i class="bi bi-check-circle-fill text-danger"></i> PCAB Accredited</span>
+        </div>
+        <button type="button" class="btn btn-outline-pill-dark btn-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+          aria-label="Back to top">
+          <span>Back to Top</span>
+          <i class="bi bi-arrow-up" aria-hidden="true"></i>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       SCRIPTS & INTERACTION LOGIC
+       ======================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // 1. Password Visibility Toggle
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const loginPasswordInput = document.getElementById('loginPassword');
+    const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+
+    if (togglePasswordBtn && loginPasswordInput && togglePasswordIcon) {
+      togglePasswordBtn.addEventListener('click', () => {
+        const isPassword = loginPasswordInput.type === 'password';
+        loginPasswordInput.type = isPassword ? 'text' : 'password';
+        togglePasswordIcon.className = isPassword ? 'bi bi-eye-slash' : 'bi bi-eye';
+      });
+    }
+
+    // 2. Role Selector (Patient vs Care Team)
+    let currentRole = 'patient';
+    const tabPatient = document.getElementById('tabPatient');
+    const tabProvider = document.getElementById('tabProvider');
+    const loginBtnLabel = document.getElementById('loginBtnLabel');
+
+    if (tabPatient && tabProvider) {
+      tabPatient.addEventListener('click', () => {
+        currentRole = 'patient';
+        tabPatient.classList.add('active');
+        tabPatient.setAttribute('aria-selected', 'true');
+        tabProvider.classList.remove('active');
+        tabProvider.setAttribute('aria-selected', 'false');
+        if (loginBtnLabel) loginBtnLabel.textContent = 'Sign In to Patient Portal';
+        hideAlert();
+      });
+
+      tabProvider.addEventListener('click', () => {
+        currentRole = 'provider';
+        tabProvider.classList.add('active');
+        tabProvider.setAttribute('aria-selected', 'true');
+        tabPatient.classList.remove('active');
+        tabPatient.setAttribute('aria-selected', 'false');
+        if (loginBtnLabel) loginBtnLabel.textContent = 'Sign In to Provider Network';
+        hideAlert();
+      });
+    }
+
+    // 3. Social SSO Auth Handler
+    function handleSocialAuth(provider) {
+      const alertBox = document.getElementById('loginAlertBox');
+      const alertMsg = document.getElementById('loginAlertMsg');
+      if (alertBox && alertMsg) {
+        alertBox.className = 'alert alert-info py-2 px-3 small rounded-3 mb-3 d-flex align-items-center gap-2';
+        alertMsg.innerHTML = `<strong>Connecting to ${provider}...</strong> Redirecting to secure single sign-on.`;
+        setTimeout(() => {
+          alertBox.className = 'alert alert-success py-2 px-3 small rounded-3 mb-3 d-flex align-items-center gap-2';
+          alertMsg.innerHTML = `<i class="bi bi-check-circle-fill"></i> Authenticated via ${provider}. Welcome to Elora Rx.`;
+        }, 1200);
+      }
+    }
+
+    // 4. Form Submission & Validation
+    function submitLoginForm() {
+      const email = document.getElementById('loginEmail')?.value.trim();
+      const pwd = document.getElementById('loginPassword')?.value;
+      const submitBtn = document.getElementById('loginSubmitBtn');
+      const alertBox = document.getElementById('loginAlertBox');
+      const alertMsg = document.getElementById('loginAlertMsg');
+
+      if (!email || !pwd) {
+        showAlert('Please enter both your email and password.', 'danger');
+        return;
+      }
+
+      // Simulate Authentication Progress
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.85';
+        if (loginBtnLabel) {
+          loginBtnLabel.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Verifying Credentials...';
+        }
+      }
+
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+          if (loginBtnLabel) {
+            loginBtnLabel.textContent = currentRole === 'patient' ? 'Sign In to Patient Portal' : 'Sign In to Provider Network';
+          }
+        }
+        showAlert(`Welcome back! Successfully logged into the ${currentRole === 'patient' ? 'Patient Portal' : 'Provider Network'}. Redirecting to your dashboard...`, 'success');
+      }, 1400);
+    }
+
+    // 5. Forgot Password Handler
+    function handleForgotPassword(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('loginEmail');
+      const email = emailInput ? emailInput.value.trim() : '';
+
+      if (email) {
+        showAlert(`Password reset instructions have been dispatched to <strong>${email}</strong>. Check your inbox.`, 'success');
+      } else {
+        showAlert('Please enter your email address in the field above to receive a reset link.', 'warning');
+        if (emailInput) emailInput.focus();
+      }
+    }
+
+    function showAlert(msg, type = 'danger') {
+      const alertBox = document.getElementById('loginAlertBox');
+      const alertMsg = document.getElementById('loginAlertMsg');
+      if (alertBox && alertMsg) {
+        alertBox.className = `alert alert-${type} py-2 px-3 small rounded-3 mb-3 d-flex align-items-center gap-2`;
+        alertMsg.innerHTML = msg;
+        alertBox.classList.remove('d-none');
+      }
+    }
+
+    function hideAlert() {
+      const alertBox = document.getElementById('loginAlertBox');
+      if (alertBox) alertBox.classList.add('d-none');
+    }
+  </script>
+
+</body>
+
+</html>
