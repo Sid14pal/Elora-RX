@@ -1130,7 +1130,10 @@
     border: none;
     transition: var(--transition-spring);
     cursor: pointer;
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
+    box-shadow: 0 8px 20px -3px rgba(169, 34, 55, 0.3);
   }
 
   .btn-hero-cta:hover {
@@ -1142,10 +1145,12 @@
     transform: translateY(0);
   }
 
+  .btn-hero-cta .cta-arrow-circle,
   .cta-arrow-circle {
     width: 38px;
     height: 38px;
-    background-color: rgba(255, 255, 255, 0.18);
+    min-width: 38px;
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
@@ -1153,12 +1158,32 @@
     margin-left: 14px;
     color: #ffffff;
     transition: var(--transition-spring);
+    flex-shrink: 0;
+  }
+
+  .btn-hero-cta .cta-arrow-circle svg {
+    width: 16px;
+    height: 16px;
   }
 
   .btn-hero-cta:hover .cta-arrow-circle {
     background-color: #ffffff;
     color: var(--color-brand-primary);
     transform: translateX(4px);
+  }
+
+  @media (max-width: 575px) {
+    .btn-hero-cta {
+      font-size: 0.98rem;
+      padding: 11px 12px 11px 22px;
+    }
+
+    .btn-hero-cta .cta-arrow-circle {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+      margin-left: 12px;
+    }
   }
 
   /* Trust Badges Grid */
@@ -4476,7 +4501,7 @@
     box-shadow: 0 8px 22px rgba(169, 34, 55, 0.38);
   }
 
-  .cta-arrow-circle {
+  .testimonial-cta-btn .cta-arrow-circle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -6708,6 +6733,28 @@
     margin-bottom: 28px;
   }
 
+  .product-cta-wrap {
+    margin-bottom: 32px;
+    width: 100%;
+  }
+
+  .product-cta-wrap .btn-hero-cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 18px 28px;
+    box-sizing: border-box;
+    font-size: 1.3em;
+  }
+
+  @media (max-width: 575px) {
+    .product-cta-wrap .btn-hero-cta {
+      padding: 14px 20px;
+    }
+  }
+
   /* About Serif Italic Accent */
   .about-serif-italic {
     font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -6814,7 +6861,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 1.5rem;
     line-height: 1;
     flex-shrink: 0;
     transition: background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1),
@@ -6886,7 +6933,7 @@
     background: linear-gradient(90deg, #22080d 0%, #350f17 50%, #22080d 100%);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-    padding: 17px 0;
+    padding: 21px 0;
     user-select: none;
     z-index: 2;
   }
@@ -6938,7 +6985,7 @@
 
   .trust-marquee-text {
     font-family: var(--font-family);
-    font-size: clamp(0.92rem, 1.08vw, 1.4rem);
+    font-size: clamp(0.92rem, 1.1vw, 1.4rem);
     font-weight: 500;
     letter-spacing: -0.01em;
     color: #ffffff;
