@@ -475,13 +475,13 @@
 
   /* Dropdown Menu */
   .dropdown-menu-animated {
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(232, 207, 210, 0.6);
     border-radius: 20px;
     padding: 10px;
-    min-width: 280px;
+    min-width: 350px;
     animation: dropdownFade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 18px 40px -10px rgba(169, 34, 55, 0.12), 0 6px 18px rgba(0, 0, 0, 0.05);
   }
@@ -511,6 +511,230 @@
     transform: translateX(4px);
   }
 
+  .dropdown-item.active-treatment {
+    background-color: rgba(169, 34, 55, 0.06);
+    border: 1px solid rgba(169, 34, 55, 0.18);
+  }
+
+  .dropdown-item.is-coming-soon {
+    opacity: 0.62;
+    cursor: not-allowed;
+    user-select: none;
+  }
+
+  .dropdown-item.is-coming-soon:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    color: inherit;
+    transform: none;
+  }
+
+  .dropdown-item.is-coming-soon .dropdown-badge-icon {
+    filter: grayscale(0.5);
+    opacity: 0.75;
+  }
+
+  /* Treatment Status Badges */
+  .treatment-badge-status {
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    white-space: nowrap;
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-transform: uppercase;
+  }
+
+  .treatment-badge-status.available {
+    background-color: rgba(34, 197, 94, 0.12);
+    color: #15803d;
+    border: 1px solid rgba(34, 197, 94, 0.28);
+  }
+
+  .treatment-badge-status.coming-soon {
+    background-color: rgba(100, 116, 139, 0.08);
+    color: #64748b;
+    border: 1px solid rgba(100, 116, 139, 0.2);
+  }
+
+  /* ========================================================
+     MEGA MENU (3-COLUMN CLINICAL PATHWAYS DROPDOWN)
+     ======================================================== */
+  .dropdown-menu-mega {
+    min-width: 900px;
+    width: 1060px;
+    max-width: calc(100vw - 32px);
+    padding: 38px 46px 36px;
+    border-radius: 24px;
+    background: #ffffff;
+    border: 1px solid rgba(232, 207, 210, 0.7);
+    box-shadow: 0 24px 60px -12px rgba(169, 34, 55, 0.15), 0 10px 28px rgba(0, 0, 0, 0.05);
+    margin-top: 14px !important;
+  }
+
+  @media (min-width: 992px) {
+    .nav-item.dropdown:has(.dropdown-menu-mega) {
+      position: static;
+    }
+
+    .site-header .container-fluid {
+      position: relative;
+    }
+
+    .dropdown-menu-mega {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      right: auto !important;
+    }
+  }
+
+  /* Mega Menu Categories */
+  .mega-category-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mega-category-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .mega-category-icon {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    border-radius: 50%;
+    background: rgba(169, 34, 55, 0.08);
+    color: var(--color-brand-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  }
+
+  .mega-category-icon svg,
+  .mega-category-icon .mega-icon-img {
+    width: 27px;
+    height: 27px;
+    max-width: 27px;
+    max-height: 27px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+
+  .mega-category-block:hover .mega-category-icon {
+    background: var(--color-brand-primary);
+    color: #ffffff;
+    transform: scale(1.05);
+  }
+
+  .mega-category-block:hover .mega-category-icon .mega-icon-img {
+    filter: brightness(0) invert(1);
+  }
+
+  .mega-category-title {
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: #0f141e;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  /* Mega Menu Item Links */
+  .mega-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding-left: 0;
+  }
+
+  .mega-item-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-decoration: none;
+    color: #3b4352;
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.38;
+    padding: 3px 0;
+    white-space: nowrap;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mega-arrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-brand-primary);
+    -webkit-text-stroke: 0.5px var(--color-brand-primary);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 5px;
+  }
+
+  .mega-item-link:hover {
+    color: var(--color-brand-primary);
+    transform: translateX(3px);
+  }
+
+  .mega-item-link:hover .mega-arrow {
+    transform: translateX(2px);
+  }
+
+  .mega-item-link.active-link {
+    color: var(--color-brand-primary);
+    font-weight: 600;
+  }
+
+  /* Subnote under item */
+  .mega-subnote {
+    display: block;
+    font-size: 0.82rem;
+    color: #838b99;
+    line-height: 1.3;
+    margin-left: 21px;
+    margin-top: 1px;
+    margin-bottom: 5px;
+  }
+
+  /* Mega Action Button */
+  .mega-action-wrap {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .btn-mega-cta {
+    background: var(--color-brand-gradient);
+    color: #ffffff !important;
+    font-size: 1.02rem;
+    font-weight: 600;
+    padding: 14px 30px;
+    border-radius: 12px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 6px 18px -2px rgba(169, 34, 55, 0.32);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .btn-mega-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px -3px rgba(169, 34, 55, 0.45);
+    color: #ffffff !important;
+  }
+
   .dropdown-badge-icon {
     width: 34px;
     height: 34px;
@@ -521,6 +745,7 @@
     align-items: center;
     justify-content: center;
     font-size: 1rem;
+    flex-shrink: 0;
   }
 
   .dropdown-item-title {
@@ -722,6 +947,29 @@
     border-color: rgba(169, 34, 55, 0.3);
     transform: translateX(3px);
     box-shadow: 0 4px 14px rgba(169, 34, 55, 0.08);
+  }
+
+  .sidebar-treatment-card.is-coming-soon {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .sidebar-treatment-card.is-coming-soon:hover,
+  .sidebar-treatment-card.is-coming-soon:active {
+    background: #ffffff;
+    border-color: rgba(232, 207, 210, 0.55);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .sidebar-treatment-card.is-coming-soon:hover .sidebar-card-icon {
+    background: rgba(169, 34, 55, 0.07);
+    color: var(--color-brand-primary);
+  }
+
+  .sidebar-treatment-card.is-coming-soon:hover .sidebar-card-arrow {
+    transform: none;
+    color: #b8b0b5;
   }
 
   .sidebar-card-icon {
@@ -1095,6 +1343,10 @@
 
   .heading-line,
   .section-blur-heading,
+  .product-hero-title,
+  .product-about-title,
+  .semaglutide-stats-title,
+  .why-semaglutide-title,
   .categories-title,
   .treatments-main-headline,
   .results-title,
@@ -3274,7 +3526,7 @@
     outline-offset: 2px;
   }
 
-  /* Slider Wrapper & Track (Full-Width Viewport) */
+  /* Slider Wrapper & Track (Bleed to Right Edge, Left-Aligned with Container) */
   .treatments-slider-wrapper {
     position: relative;
     width: 100%;
@@ -3297,9 +3549,38 @@
     align-items: stretch;
     gap: 24px;
     width: max-content;
-    padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     will-change: transform;
+  }
+
+  @media (min-width: 768px) {
+    .treatments-slider-track {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .treatments-slider-track {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .treatments-slider-track {
+      padding-left: calc((100vw - 1440px) / 2 + 3rem);
+      padding-right: calc((100vw - 1440px) / 2 + 3rem);
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .treatments-slider-track {
+      padding-left: calc((100vw - 1540px) / 2 + 3rem);
+      padding-right: calc((100vw - 1540px) / 2 + 3rem);
+    }
   }
 
   .treatments-slider-track.no-transition {
@@ -3413,7 +3694,6 @@
 
   .treatment-card-inner:hover .treatment-card-media img {
     transform: scale(1.06) translateY(-4px);
-    filter: drop-shadow(0 16px 24px rgba(169, 34, 55, 0.14));
   }
 
   /* Card Bottom Info */

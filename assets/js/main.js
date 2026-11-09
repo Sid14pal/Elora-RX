@@ -594,11 +594,17 @@ function initHeadingBlurAnimation() {
 
   // 1. Hero Heading lines: Staggered cinematic blur reveal helper
   window.playHeroHeadingReveal = function (delay = 0.15) {
-    const heroHeadingLines = document.querySelectorAll('.hero-title .heading-line');
-    if (!heroHeadingLines.length || typeof gsap === 'undefined') return;
+    const heroHeadingLines = document.querySelectorAll(
+      '.hero-title .heading-line, .product-hero-title .heading-line'
+    );
+    const targetElements = heroHeadingLines.length
+      ? heroHeadingLines
+      : document.querySelectorAll('.hero-title, .product-hero-title');
+
+    if (!targetElements.length || typeof gsap === 'undefined') return;
 
     gsap.fromTo(
-      heroHeadingLines,
+      targetElements,
       {
         opacity: 0,
         y: 28,
@@ -625,14 +631,17 @@ function initHeadingBlurAnimation() {
     window.playHeroHeadingReveal(0.15);
   }
 
-  // 2. All section headings across the landing page:
+  // 2. All section headings across the landing page & product detail pages:
   // Triggered on scroll as the user reaches each specific section
   if (typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
     const sectionHeadings = [
       { id: '#categoriesTitle', selector: '.categories-title' },
+      { id: '#productAboutTitle', selector: '.product-about-title' },
+      { id: '#semaglutideStatsTitle', selector: '.semaglutide-stats-title' },
       { id: '#hiwMainHeadline', selector: '.hiw-headline' },
+      { id: '#whySemaglutideHeading', selector: '.why-semaglutide-title' },
       { id: '#treatmentsHeadline', selector: '.treatments-main-headline' },
       { id: '#resultsTitle', selector: '.results-title' },
       { id: '#careResultsTitle', selector: '.care-results-title' },
@@ -641,11 +650,23 @@ function initHeadingBlurAnimation() {
       { id: '#footerCtaHeadline', selector: '.footer-cta-headline' }
     ];
 
-    sectionHeadings.forEach(({ id, selector }) => {
-      const heading = document.querySelector(id) || document.querySelector(selector);
-      if (!heading) return;
+    const animatedHeadings = new Set();
 
-      const triggerSection = heading.closest('section, footer, .footer-cta-card') || heading;
+    const applyBlurScrollTrigger = (heading) => {
+      if (!heading || animatedHeadings.has(heading)) return;
+      if (
+        heading.classList.contains('hero-title') ||
+        heading.classList.contains('product-hero-title') ||
+        heading.closest('.hero-title, .product-hero-title')
+      ) {
+        return;
+      }
+      animatedHeadings.add(heading);
+
+      const triggerSection =
+        heading.closest(
+          'section, footer, .footer-cta-card, .product-about-section, .semaglutide-stats-section, .why-semaglutide-section'
+        ) || heading;
 
       gsap.fromTo(
         heading,
@@ -670,6 +691,15 @@ function initHeadingBlurAnimation() {
           }
         }
       );
+    };
+
+    sectionHeadings.forEach(({ id, selector }) => {
+      const heading = document.querySelector(id) || document.querySelector(selector);
+      if (heading) applyBlurScrollTrigger(heading);
+    });
+
+    document.querySelectorAll('.section-blur-heading').forEach((heading) => {
+      applyBlurScrollTrigger(heading);
     });
 
     // 3. Anchor Navigation Re-trigger:
@@ -698,7 +728,7 @@ function initHeadingBlurAnimation() {
           }
 
           const targetHeading = targetEl.querySelector(
-            '.section-blur-heading, .categories-title, .treatments-main-headline, .results-title, .care-results-title, .testimonial-main-title, .faq-main-title, .footer-cta-headline'
+            '.section-blur-heading, .categories-title, .treatments-main-headline, .results-title, .care-results-title, .testimonial-main-title, .faq-main-title, .footer-cta-headline, .product-about-title, .semaglutide-stats-title, .why-semaglutide-title'
           );
           if (targetHeading) {
             gsap.fromTo(
@@ -1219,6 +1249,20 @@ function initPopularTreatmentsSlider() {
   }
 
   /**
+   * Align slider track with hero-container content left edge
+   */
+  function updateSliderContainerOffset() {
+    const container = document.querySelector('.popular-treatments-section .hero-container');
+    if (!container || !track) return;
+    const containerRect = container.getBoundingClientRect();
+    const style = window.getComputedStyle(container);
+    const padLeft = parseFloat(style.paddingLeft) || 0;
+    const offset = Math.max(0, containerRect.left + padLeft);
+    track.style.paddingLeft = `${offset}px`;
+    track.style.paddingRight = `${Math.max(offset, 24)}px`;
+  }
+
+  /**
    * Setup Pagination Dots
    */
   function setupDots() {
@@ -1487,12 +1531,14 @@ function initPopularTreatmentsSlider() {
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
+      updateSliderContainerOffset();
       setupDots();
       goToSlide(currentIndex, false);
     }, 150);
   });
 
   // Initial setup & start auto-play
+  updateSliderContainerOffset();
   setupDots();
   goToSlide(0, false);
   startAutoSlide();
