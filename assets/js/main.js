@@ -66,7 +66,7 @@ function initSitePreloader() {
     { at: 28, text: 'Authenticating provider credentials...' },
     { at: 58, text: 'Calibrating personalized protocols...' },
     { at: 86, text: 'Finalizing clinical workspace...' },
-    { at: 100, text: 'Welcome to Vellore Rx' }
+    { at: 100, text: 'Welcome to Elora Rx' }
   ];
 
   const loadObj = { val: 0 };
@@ -381,83 +381,12 @@ function initHeroParallax() {
       }, 0);
     }
 
-    // 2. Interactive Desktop Mousemove Camera Tracking
-    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (canHover) {
-      const qxCard1 = cardMouse1 ? gsap.quickTo(cardMouse1, 'x', { duration: 0.9, ease: 'power2.out' }) : null;
-      const qyCard1 = cardMouse1 ? gsap.quickTo(cardMouse1, 'y', { duration: 0.9, ease: 'power2.out' }) : null;
-      const qrCard1 = cardMouse1 ? gsap.quickTo(cardMouse1, 'rotation', { duration: 1.0, ease: 'power2.out' }) : null;
-
-      const qxCard2 = cardMouse2 ? gsap.quickTo(cardMouse2, 'x', { duration: 0.9, ease: 'power2.out' }) : null;
-      const qyCard2 = cardMouse2 ? gsap.quickTo(cardMouse2, 'y', { duration: 0.9, ease: 'power2.out' }) : null;
-      const qrCard2 = cardMouse2 ? gsap.quickTo(cardMouse2, 'rotation', { duration: 1.0, ease: 'power2.out' }) : null;
-
-      const qxModel = heroModelImg ? gsap.quickTo(heroModelImg, 'x', { duration: 1.2, ease: 'power2.out' }) : null;
-      const qyModel = heroModelImg ? gsap.quickTo(heroModelImg, 'y', { duration: 1.2, ease: 'power2.out' }) : null;
-
-      const qxGlow = heroModelGlow ? gsap.quickTo(heroModelGlow, 'x', { duration: 1.4, ease: 'power2.out' }) : null;
-      const qyGlow = heroModelGlow ? gsap.quickTo(heroModelGlow, 'y', { duration: 1.4, ease: 'power2.out' }) : null;
-
-      const qxContent = heroContent ? gsap.quickTo(heroContent, 'x', { duration: 1.2, ease: 'power2.out' }) : null;
-      const qyContent = heroContent ? gsap.quickTo(heroContent, 'y', { duration: 1.2, ease: 'power2.out' }) : null;
-
-      const onMouseMove = (e) => {
-        const rect = heroSection.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-
-        const relX = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
-        const relY = (e.clientY - rect.top) / rect.height - 0.5;
-
-        // Card 1 shifts opposite to cursor with subtle tilt
-        if (qxCard1) qxCard1(relX * -22);
-        if (qyCard1) qyCard1(relY * -16);
-        if (qrCard1) qrCard1(relX * -3.5);
-
-        // Card 2 shifts with cursor
-        if (qxCard2) qxCard2(relX * 18);
-        if (qyCard2) qyCard2(relY * 14);
-        if (qrCard2) qrCard2(relX * 3);
-
-        // Model image shifts subtly
-        if (qxModel) qxModel(relX * 9);
-        if (qyModel) qyModel(relY * 7);
-
-        // Ambient glow shifts smoothly
-        if (qxGlow) qxGlow(relX * 16);
-        if (qyGlow) qyGlow(relY * 12);
-
-        // Left text column shifts very gently opposite
-        if (qxContent) qxContent(relX * -6);
-        if (qyContent) qyContent(relY * -4);
-      };
-
-      const onMouseLeave = () => {
-        if (qxCard1) qxCard1(0);
-        if (qyCard1) qyCard1(0);
-        if (qrCard1) qrCard1(0);
-
-        if (qxCard2) qxCard2(0);
-        if (qyCard2) qyCard2(0);
-        if (qrCard2) qrCard2(0);
-
-        if (qxModel) qxModel(0);
-        if (qyModel) qyModel(0);
-
-        if (qxGlow) qxGlow(0);
-        if (qyGlow) qyGlow(0);
-
-        if (qxContent) qxContent(0);
-        if (qyContent) qyContent(0);
-      };
-
-      heroSection.addEventListener('mousemove', onMouseMove);
-      heroSection.addEventListener('mouseleave', onMouseLeave);
-
-      return () => {
-        heroSection.removeEventListener('mousemove', onMouseMove);
-        heroSection.removeEventListener('mouseleave', onMouseLeave);
-      };
-    }
+    // 2. Interactive Desktop Mousemove Parallax: Disabled (both text and image kept stationary on mouse move)
+    if (heroModelImg) gsap.set(heroModelImg, { x: 0, y: 0 });
+    if (heroModelGlow) gsap.set(heroModelGlow, { x: 0, y: 0 });
+    if (cardMouse1) gsap.set(cardMouse1, { x: 0, y: 0, rotation: 0 });
+    if (cardMouse2) gsap.set(cardMouse2, { x: 0, y: 0, rotation: 0 });
+    if (heroContent) gsap.set(heroContent, { x: 0 });
   });
 
   // 2. Mobile & Tablet Experience (< 992px)
@@ -526,9 +455,9 @@ function initResultsShowcaseParallax() {
 
     // Background Image: Moves downward as you scroll down (creates a scenic window)
     if (bgImage) {
-      tl.fromTo(bgImage, 
-        { yPercent: -14 }, 
-        { yPercent: 14, ease: 'none' }, 
+      tl.fromTo(bgImage,
+        { yPercent: -14 },
+        { yPercent: 14, ease: 'none' },
         0
       );
     }
@@ -801,7 +730,7 @@ function initMobileSidebar() {
         let targetEl = null;
         try {
           targetEl = document.querySelector(href);
-        } catch (err) {}
+        } catch (err) { }
 
         if (targetEl) {
           e.preventDefault();
@@ -876,22 +805,20 @@ function initPatientCounter() {
 }
 
 /**
- * Floating Treatment Cards: Interactive Click & Modal Trigger
+ * Floating Treatment Cards: Interactive Click
  */
 function initFloatingCards() {
   const cards = document.querySelectorAll('.floating-treatment-card, .floating-benefit-card, [data-treatment]');
-  const qualifyModalEl = document.getElementById('qualifyModal');
-
-  if (!qualifyModalEl) return;
-  const qualifyModal = bootstrap.Modal.getOrCreateInstance(qualifyModalEl);
 
   cards.forEach(card => {
     card.addEventListener('click', (e) => {
       const treatmentName = card.getAttribute('data-treatment');
       if (treatmentName) {
-        selectTreatmentOption(treatmentName);
-        qualifyModal.show();
-        showToast(`Selected program: ${treatmentName}`);
+        if (treatmentName.toLowerCase().includes('weight') || treatmentName.toLowerCase().includes('semaglutide')) {
+          window.location.href = 'semaglutide.html';
+        } else if (typeof showToast === 'function') {
+          showToast(`Selected program: ${treatmentName}`);
+        }
       }
     });
 
@@ -906,47 +833,17 @@ function initFloatingCards() {
 }
 
 /**
- * Helper: Select specific treatment option inside modal
+ * Helper: Select specific treatment option (Safe fallback)
  */
 function selectTreatmentOption(treatmentName) {
-  const optionCards = document.querySelectorAll('.option-card');
-  const normalized = treatmentName.toLowerCase().replace(/\s+/g, '-');
-
-  optionCards.forEach(card => {
-    if (card.getAttribute('data-value') === normalized || card.textContent.includes(treatmentName)) {
-      card.classList.add('active');
-    } else {
-      card.classList.remove('active');
-    }
-  });
+  // Safe helper kept for external callers
 }
 
 /**
- * Modal Option Toggle & Form Submission
+ * Modal Option Toggle & Form Submission (Cleaned - modals removed)
  */
 function initModalInteractions() {
-  const optionCards = document.querySelectorAll('.option-card');
-  optionCards.forEach(card => {
-    card.addEventListener('click', () => {
-      optionCards.forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-    });
-  });
-
-  // Modal reset when closed
-  const modalEl = document.getElementById('qualifyModal');
-  if (modalEl) {
-    modalEl.addEventListener('hidden.bs.modal', () => {
-      const step1 = document.getElementById('assessmentStep1');
-      const result = document.getElementById('assessmentResult');
-      if (step1 && result) {
-        step1.classList.remove('d-none');
-        result.classList.add('d-none');
-      }
-      const form = document.getElementById('qualificationForm');
-      if (form) form.reset();
-    });
-  }
+  // Modals eliminated across template
 }
 
 /**
@@ -990,8 +887,6 @@ function initTreatmentShowcase() {
   const images = document.querySelectorAll('.featured-product-img');
   const labelEl = document.getElementById('featuredProductLabel');
   const cardsGrid = document.querySelector('.treatment-cards-grid');
-  const qualifyModalEl = document.getElementById('qualifyModal');
-  const modalInstance = qualifyModalEl ? bootstrap.Modal.getOrCreateInstance(qualifyModalEl) : null;
 
   if (!cards.length || !images.length) return;
 
@@ -1131,24 +1026,9 @@ function initTreatmentShowcase() {
       }, 35);
     });
 
-    // Click: select treatment option and open qualification modal
-    card.addEventListener('click', () => {
-      const categoryName = card.getAttribute('data-category') || card.querySelector('.small-card-title')?.textContent.trim() || 'Health Care';
-      selectTreatmentOption(categoryName);
-      showToast(`Selected: ${categoryName}`);
-      if (modalInstance) {
-        modalInstance.show();
-      }
-    });
-
-    // Keyboard accessibility (Enter / Space)
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'button');
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.click();
-      }
+    // Click: inactive hyperlink - prevent popup, modal, and navigation action
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
     });
   });
 
@@ -1222,9 +1102,6 @@ function initPopularTreatmentsSlider() {
   let animationID = null;
   let hasMoved = false;
 
-  // Modal instance for card clicks
-  const qualifyModalEl = document.getElementById('qualifyModal');
-  const modalInstance = qualifyModalEl ? bootstrap.Modal.getOrCreateInstance(qualifyModalEl) : null;
 
   /**
    * Calculate dimensions
@@ -1488,7 +1365,7 @@ function initPopularTreatmentsSlider() {
   });
 
   /**
-   * Card Click Handler: Preselect option and open modal
+   * Card Click Handler: Navigate to Semaglutide PDP or trigger notification
    */
   cards.forEach(card => {
     const inner = card.querySelector('.treatment-card-inner');
@@ -1497,23 +1374,8 @@ function initPopularTreatmentsSlider() {
 
     if (inner) {
       inner.addEventListener('click', (e) => {
-        // If user was dragging, don't open modal
-        if (hasMoved) {
-          e.preventDefault();
-          return;
-        }
-
-        if (typeof selectTreatmentOption === 'function') {
-          selectTreatmentOption(categoryKey);
-        }
-
-        if (typeof showToast === 'function') {
-          showToast(`Selected: ${productTitle}`);
-        }
-
-        if (modalInstance) {
-          modalInstance.show();
-        }
+        // Inactive hyperlink - prevent popup, modal, or navigation action
+        e.preventDefault();
       });
 
       // Keyboard accessibility for card
@@ -1829,6 +1691,29 @@ window.submitNewsletter = function (event) {
     input.value = '';
   }
 };
+
+/**
+ * Global Product PDP CTA Handler (Intake confirmation without modal)
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  const heroCta = document.getElementById('productHeroCtaBtn');
+  if (heroCta) {
+    heroCta.addEventListener('click', () => {
+      if (typeof showToast === 'function') {
+        showToast('Prescription protocol initiated! Ready for physician intake.', 'success');
+      }
+    });
+  }
+
+  // Prevent default action for inactive Treatments dropdown links (href="#")
+  document.addEventListener('click', (e) => {
+    const inactiveMegaLink = e.target.closest('.dropdown-menu-mega a[href="#"]');
+    if (inactiveMegaLink) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+});
 
 
 
