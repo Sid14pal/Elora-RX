@@ -475,9 +475,9 @@
               </div>
 
               <!-- Main Heading -->
-              <h1 class="ap-hero-title mb-4">
-                Personalized <span class="text-highlight">care</span> for<br>
-                every stage of wellness
+              <h1 class="ap-hero-title mb-4" id="apHeroTitle">
+                <span class="heading-line d-inline-block">Personalized <span class="text-highlight">care</span> for</span><br>
+                <span class="heading-line d-inline-block">every stage of wellness</span>
               </h1>
 
               <!-- Description -->
@@ -1238,7 +1238,7 @@
                 <span class="eyebrow-text">PHYSICIAN-GUIDED CARE</span>
               </div>
 
-              <h2 class="expert-care-title" id="expertCareTitle">
+              <h2 class="expert-care-title section-blur-heading" id="expertCareTitle">
                 Expert care, thoughtfully designed<br>
                 around your everyday needs
               </h2>
@@ -1892,148 +1892,208 @@
 
   </main>
 
-    <!-- ========================================================
-       SITE FOOTER
+  <!-- ========================================================
+       PREMIUM THEMED SITE FOOTER (DARK EDITORIAL TELEMEDICINE)
        ======================================================== -->
-    <div id="contactus"></div>
-    <footer class="site-footer" id="siteFooter">
-      <!-- Ambient Glow Blobs -->
-      <div class="footer-ambient-glow-wrapper" aria-hidden="true">
-        <div class="footer-ambient-glow glow-1"></div>
-        <div class="footer-ambient-glow glow-2"></div>
+  <div id="contactus"></div>
+  <footer class="site-footer" id="siteFooter">
+    <!-- Ambient Glow Blobs -->
+    <div class="footer-ambient-glow-wrapper" aria-hidden="true">
+      <div class="footer-ambient-glow glow-1"></div>
+      <div class="footer-ambient-glow glow-2"></div>
+    </div>
+
+    <div class="container-fluid hero-container px-3 px-md-4 px-xl-5 position-relative">
+
+      <!-- Upper Newsletter & VIP Health Advisory Banner -->
+      <div class="footer-cta-card">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <div class="footer-cta-eyebrow section-eyebrow is-dark mb-3">
+              <span class="eyebrow-dot" aria-hidden="true"></span>
+              <span class="eyebrow-text">PHYSICIAN-GUIDED CARE</span>
+            </div>
+            <h3 class="footer-cta-headline section-blur-heading" id="footerCtaHeadline">
+              Elevate your daily vitality with tailored clinical protocols.
+            </h3>
+          </div>
+          <div class="col-lg-6">
+            <form class="footer-newsletter-form" onsubmit="event.preventDefault(); window.submitNewsletter?.(event);">
+              <div class="newsletter-input-group">
+                <input type="email" class="form-control newsletter-input" placeholder="Enter your email address"
+                  aria-label="Email address for wellness updates" required>
+                <button type="submit" class="btn btn-footer-subscribe">
+                  <span>Subscribe</span>
+                  <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
 
-      <div class="container-fluid hero-container px-3 px-md-4 px-xl-5 position-relative">
+      <!-- Main Footer Links Grid -->
+      <div class="footer-main-grid py-4 py-lg-5">
+        <div class="row g-4 g-lg-5">
 
-        <!-- Upper Newsletter & VIP Health Advisory Banner -->
-        <div class="footer-cta-card">
-          <div class="row align-items-center g-4">
-            <div class="col-lg-6">
-              <div class="footer-cta-eyebrow section-eyebrow is-dark mb-3">
-                <span class="eyebrow-dot" aria-hidden="true"></span>
-                <span class="eyebrow-text">PHYSICIAN-GUIDED CARE</span>
-              </div>
-              <h3 class="footer-cta-headline section-blur-heading">
-                Stay informed about new treatments, health tips, and more.
-              </h3>
+          <!-- Col 1: Brand Logo, Philosophy, Certifications & Socials -->
+          <div class="col-12 col-lg-4">
+            <div class="footer-brand-wrap mb-4">
+              <a class="footer-brand d-inline-flex align-items-center gap-2 mb-3" href="index.html" aria-label="ELORA RX Home">
+                <span class="footer-brand-name">ELORA RX</span>
+              </a>
+              <p class="footer-brand-desc">
+                Modern, physician-guided telemedicine tailored to your unique biology. Evidence-based care plans for
+                weight loss, hormonal balance, hair restoration, and cellular longevity delivered discreetly to your
+                door.
+              </p>
             </div>
-            <div class="col-lg-6">
-              <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
-                <div class="newsletter-input-group">
-                  <input type="email" class="form-control newsletter-input" placeholder="Enter your email address"
-                    aria-label="Email address for wellness updates" required>
-                  <button type="submit" class="btn btn-footer-subscribe">
-                    <span>Subscribe</span>
-                    <i class="bi bi-arrow-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </form>
+
+            <!-- Trust & Certification Badges -->
+            <div class="footer-trust-pills d-flex flex-wrap gap-2 mb-4">
+              <span class="footer-trust-pill">
+                <i class="bi bi-shield-check text-success"></i> HIPAA Compliant
+              </span>
+              <span class="footer-trust-pill">
+                <i class="bi bi-patch-check-fill text-danger"></i> Board-Certified US MDs
+              </span>
+              <span class="footer-trust-pill">
+                <i class="bi bi-box-seam text-info"></i> Discreet US Delivery
+              </span>
+            </div>
+
+            <!-- Social Links -->
+            <div class="footer-social-links d-flex align-items-center gap-2">
+              <a href="#" class="footer-social-btn" aria-label="Follow us on Instagram">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="#" class="footer-social-btn" aria-label="Connect on LinkedIn">
+                <i class="bi bi-linkedin"></i>
+              </a>
+              <a href="#" class="footer-social-btn" aria-label="Follow us on X (Twitter)">
+                <i class="bi bi-twitter-x"></i>
+              </a>
+              <a href="#" class="footer-social-btn" aria-label="Watch on YouTube">
+                <i class="bi bi-youtube"></i>
+              </a>
             </div>
           </div>
-        </div>
 
-        <!-- Main Footer Links Grid -->
-        <div class="footer-main-grid py-4 py-lg-5">
-          <div class="row g-4 g-lg-5">
-
-            <!-- Col 1: Brand -->
-            <div class="col-12 col-lg-4">
-              <div class="footer-brand-wrap mb-4">
-                <a class="footer-brand d-inline-flex align-items-center gap-2 mb-3" href="index.html"
-                  aria-label="ELORA RX Home">
-                  <span class="footer-brand-name">ELORA RX</span>
-                </a>
-                <p class="footer-brand-desc">
-                  A tele-medicine platform connecting you to licensed health care providers for personalized treatment
-                  plans, all from home.
-                </p>
-              </div>
-
-              <div class="footer-social-links d-flex align-items-center gap-2">
-                <a href="#" class="footer-social-btn" aria-label="Follow us on Instagram">
-                  <i class="bi bi-instagram"></i>
-                </a>
-                <a href="#" class="footer-social-btn" aria-label="Connect on LinkedIn">
-                  <i class="bi bi-linkedin"></i>
-                </a>
-                <a href="#" class="footer-social-btn" aria-label="Follow us on X (Twitter)">
-                  <i class="bi bi-twitter-x"></i>
-                </a>
-                <a href="#" class="footer-social-btn" aria-label="Watch on YouTube">
-                  <i class="bi bi-youtube"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Col 2: Treatments -->
-            <div class="col-6 col-md-3 col-lg-2">
-              <h4 class="footer-col-title">Treatments</h4>
-              <ul class="footer-nav-list list-unstyled mb-0">
-                <li><a href="#" class="footer-nav-link">Weight Loss</a></li>
-                <li><a href="#" class="footer-nav-link">Hair &amp; Skin</a></li>
-                <li><a href="#" class="footer-nav-link">How It Works</a></li>
-                <li><a href="#" class="footer-nav-link">Sexual Health</a></li>
-                <li><a href="#" class="footer-nav-link">Hormone Health</a></li>
-              </ul>
-            </div>
-
-            <!-- Col 3: Company -->
-            <div class="col-6 col-md-3 col-lg-2">
-              <h4 class="footer-col-title">Company</h4>
-              <ul class="footer-nav-list list-unstyled mb-0">
-                <li><a href="#" class="footer-nav-link">Our Mission</a></li>
-                <li><a href="#" class="footer-nav-link">Privacy Policy</a></li>
-                <li><a href="#how-it-works" class="footer-nav-link">How It Works</a></li>
-                <li><a href="#contactus" class="footer-nav-link">Contact Us</a></li>
-                <li><a href="#" class="footer-nav-link">About Us</a></li>
-                <li><a href="#review" class="footer-nav-link">Reviews</a></li>
-              </ul>
-            </div>
-
-            <!-- Col 4: Legal -->
-            <div class="col-6 col-md-3 col-lg-2">
-              <h4 class="footer-col-title">Guide &amp; Legal</h4>
-              <ul class="footer-nav-list list-unstyled mb-0">
-                <li><a href="#" class="footer-nav-link">Medical Disclaimer</a></li>
-                <li><a href="#" class="footer-nav-link">Privacy Policy</a></li>
-                <li><a href="#" class="footer-nav-link">Terms of Service</a></li>
-                <li><a href="#" class="footer-nav-link">Shipping &amp; Returns</a></li>
-              </ul>
-            </div>
-
-            <!-- Col 5: Support -->
-            <div class="col-6 col-md-3 col-lg-2">
-              <h4 class="footer-col-title">Customer Support</h4>
-              <ul class="footer-nav-list list-unstyled mb-0">
-                <li><a href="#" class="footer-nav-link">Help Center</a></li>
-                <li><a href="#" class="footer-nav-link">Contact Us</a></li>
-                <li><a href="mailto:support@elorarx.com" class="footer-nav-link">support@elorarx.com</a></li>
-                <li><a href="tel:18885554827" class="footer-nav-link">+1 (888) 555-4827</a></li>
-              </ul>
-            </div>
-
+          <!-- Col 2: Treatments & Therapies -->
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="footer-col-title">Treatments</h4>
+            <ul class="footer-nav-list list-unstyled mb-0">
+              <li><a href="all-products.html?category=weight-loss#apProductsGrid" class="footer-nav-link">GLP-1 Weight
+                  Loss</a></li>
+              <li><a href="all-products.html?category=weight-loss#apProductsGrid" class="footer-nav-link">Tirzepatide
+                  Agonist</a></li>
+              <li><a href="all-products.html?category=menopause#apProductsGrid" class="footer-nav-link">Hormone Health
+                  &amp; HRT</a></li>
+              <li><a href="all-products.html?category=hair-skin#apProductsGrid" class="footer-nav-link">Hair &amp; Scalp
+                  Growth</a></li>
+              <li><a href="all-products.html?category=longevity#apProductsGrid" class="footer-nav-link">Longevity &amp;
+                  NAD+</a></li>
+              <li><a href="all-products.html?category=sexual-health#apProductsGrid" class="footer-nav-link">Sexual
+                  Health Vitality</a></li>
+              <li><a href="all-products.html?category=sleep-issue#apProductsGrid" class="footer-nav-link">Restorative
+                  Sleep Aid</a></li>
+            </ul>
           </div>
-        </div>
 
-        <!-- Bottom Copyright -->
-        <div
-          class="footer-bottom-bar d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 pt-4 pb-2">
-          <div class="footer-copyright">
-            <span>&copy; 2026 ELORA RX. All rights reserved.</span>
+          <!-- Col 3: Company & Platform -->
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="footer-col-title">Company</h4>
+            <ul class="footer-nav-list list-unstyled mb-0">
+              <li><a href="#how-it-works" class="footer-nav-link">How It Works</a></li>
+              <li><a href="index.html#careTeamSection" class="footer-nav-link">Our Medical Team</a></li>
+              <li><a href="index.html#popularTreatmentsSection" class="footer-nav-link">Popular Products</a></li>
+              <li><a href="#customerReviewsSection" class="footer-nav-link">Patient Reviews</a></li>
+              <li><a href="#faqs" class="footer-nav-link">FAQ &amp; Help Center</a></li>
+              <li><a href="semaglutide.html" class="footer-nav-link highlight-link">Free
+                  Assessment</a></li>
+            </ul>
           </div>
-          <p class="footer-disclaimer-inline mb-0">
-            <strong>Medical Disclaimer:</strong> The information on this site is for educational purposes only and does
-            not substitute for professional medical advice.
-          </p>
-          <button type="button" class="btn btn-back-to-top d-inline-flex align-items-center gap-2" id="backToTopBtn"
-            aria-label="Back to top of page">
-            <span>Back to top</span>
-            <i class="bi bi-arrow-up" aria-hidden="true"></i>
-          </button>
-        </div>
 
+          <!-- Col 4: Legal & Governance -->
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="footer-col-title">Clinical &amp; Legal</h4>
+            <ul class="footer-nav-list list-unstyled mb-0">
+              <li><a href="#" class="footer-nav-link">Telehealth Consent</a></li>
+              <li><a href="#" class="footer-nav-link">Privacy Policy</a></li>
+              <li><a href="#" class="footer-nav-link">Terms of Service</a></li>
+              <li><a href="#" class="footer-nav-link">HIPAA Statement</a></li>
+              <li><a href="#" class="footer-nav-link">Pharmacy Compounding</a></li>
+              <li><a href="#" class="footer-nav-link">Patient Rights</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 5: Clinical Support & Hours -->
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="footer-col-title">Care Support</h4>
+            <div class="footer-contact-block mb-3">
+              <span class="footer-contact-label">Clinical Hours</span>
+              <p class="footer-contact-val">7 Days a Week<br>8:00 AM – 9:00 PM EST</p>
+            </div>
+            <div class="footer-contact-block mb-3">
+              <span class="footer-contact-label">Patient Concierge</span>
+              <a href="mailto:support@vellorerx.com" class="footer-contact-link">care@vellorerx.com</a>
+            </div>
+            <div class="footer-contact-block mb-3">
+              <span class="footer-contact-label">Toll-Free Patient Line</span>
+              <a href="tel:18005558355" class="footer-contact-link">1 (800) 555-VELLORE</a>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </footer>
+
+      <!-- Medical Disclaimer -->
+      <div class="footer-disclaimer-box my-4">
+        <p class="footer-disclaimer-text mb-0">
+          <strong>Medical Disclaimer:</strong> The information provided on this website is for educational and
+          informational
+          purposes only and does not substitute for professional medical advice, diagnosis, or treatment. Prescription
+          medications are subject to the independent clinical judgment of a licensed healthcare provider following an
+          online
+          medical consultation. Compounded medications are prepared by state-licensed 503A pharmacies in accordance with
+          FDA
+          regulations; compounded drugs have not undergone FDA pre-market approval. If you are experiencing a medical
+          emergency, call 911 immediately.
+        </p>
+      </div>
+
+      <!-- Bottom Copyright & Back to Top Bar -->
+      <div
+        class="footer-bottom-bar d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 pt-4 pb-2">
+        <div class="footer-copyright">
+          <span>&copy; 2026 ELORA RX Health, Inc. All rights reserved.</span>
+        </div>
+
+        <!-- Smooth Scroll Back to Top Button -->
+        <button type="button" class="btn btn-back-to-top d-inline-flex align-items-center gap-2" id="backToTopBtn"
+          aria-label="Back to top of page">
+          <span>Back to top</span>
+          <i class="bi bi-arrow-up" aria-hidden="true"></i>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Toast Notification for Interactions -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+    <div id="actionToast" class="toast align-items-center text-white bg-dark border-0 rounded-4 shadow-lg" role="alert"
+      aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center gap-2">
+          <i class="bi bi-check-circle-fill text-danger fs-5"></i>
+          <span id="toastMessage">Treatment plan selected</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -2048,7 +2108,7 @@
     <script src="assets/js/script.js"></script>
 
     <!-- All Products Page Script -->
-    <script src="assets/js/all-products.js?v=2.1"></script>
+    <script src="assets/js/all-products.js?v=2.2"></script>
 </body>
 
 </html>

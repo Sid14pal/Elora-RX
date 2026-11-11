@@ -212,17 +212,6 @@
       });
     }
 
-    // Smooth scroll for in-page anchor
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', e => {
-        const target = document.querySelector(anchor.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
     // Lenis smooth scroll (if available)
     if (typeof Lenis !== 'undefined') {
       const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
@@ -715,19 +704,23 @@
      SECTION HEADING BLUR ANIMATION
   ═══════════════════════════════════════════════════════ */
   function initHeadingAnimations() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    if (typeof gsap === 'undefined') return;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    gsap.registerPlugin(ScrollTrigger);
+    // 1. Hero Heading blur reveal on page load (matches index.html)
+    window.playHeroHeadingReveal = function (delay = 0.15) {
+      const heroHeadingLines = document.querySelectorAll(
+        '.ap-hero-title .heading-line, .hero-title .heading-line'
+      );
+      const targetElements = heroHeadingLines.length
+        ? heroHeadingLines
+        : document.querySelectorAll('.ap-hero-title, .hero-title');
 
-    const headings = document.querySelectorAll(
-      '.customer-testimonial-section .section-blur-heading, .faq-section .section-blur-heading'
-    );
-    headings.forEach(heading => {
-      const section = heading.closest('section') || heading;
+      if (!targetElements.length || typeof gsap === 'undefined') return;
+
       gsap.fromTo(
-        heading,
+        targetElements,
         {
           opacity: 0,
           y: 28,
@@ -739,18 +732,167 @@
           y: 0,
           scale: 1,
           filter: 'blur(0px)',
-          duration: 1.2,
+          duration: 1.3,
+          stagger: 0.2,
           ease: 'power3.out',
-          clearProps: 'filter,transform',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 82%',
-            toggleActions: 'play none none reverse'
-          }
+          delay: delay,
+          clearProps: 'filter,transform'
         }
       );
-    });
+    };
+
+    // Trigger hero heading blur reveal immediately
+    window.playHeroHeadingReveal(0.15);
+
+    // 2. All section headings blur reveal on scroll
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const sectionHeadings = [
+        { id: '#hiwMainHeadline', selector: '.hiw-headline' },
+        { id: '#expertCareTitle', selector: '.expert-care-title' },
+        { id: '#reviewsHeadline', selector: '.testimonial-main-title' },
+        { id: '#faqMainTitle', selector: '.faq-main-title' },
+        { id: '#footerCtaHeadline', selector: '.footer-cta-headline' }
+      ];
+
+      const animatedHeadings = new Set();
+
+      const applyBlurScrollTrigger = (heading) => {
+        if (!heading || animatedHeadings.has(heading)) return;
+        if (
+          heading.classList.contains('ap-hero-title') ||
+          heading.classList.contains('hero-title') ||
+          heading.closest('.ap-hero-title, .hero-title')
+        ) {
+          return;
+        }
+        animatedHeadings.add(heading);
+
+        const triggerSection =
+          heading.closest(
+            '.footer-cta-card, .expert-care-section, .customer-testimonial-section, .faq-section, .how-it-works, section, footer'
+          ) || heading;
+
+        gsap.fromTo(
+          heading,
+          {
+            opacity: 0,
+            y: 28,
+            filter: 'blur(16px)',
+            scale: 0.98
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: 'blur(0px)',
+            duration: 1.2,
+            ease: 'power3.out',
+            clearProps: 'filter,transform',
+            scrollTrigger: {
+              trigger: triggerSection,
+              start: 'top 82%',
+              toggleActions: 'play none none reverse'
+            }
+          }
+        );
+      };
+
+      sectionHeadings.forEach(({ id, selector }) => {
+        const heading = document.querySelector(id) || document.querySelector(selector);
+        if (heading) applyBlurScrollTrigger(heading);
+      });
+
+      document.querySelectorAll('.section-blur-heading').forEach((heading) => {
+        applyBlurScrollTrigger(heading);
+      });
+
+      // 3. Anchor Navigation Re-trigger:
+      // When clicking navigation links (e.g. navbar links, buttons pointing to #sections),
+      // ensure smooth scroll with header offset and re-trigger heading blur animation
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (!href || href === '#' || href === '#signin' || href === '#qualify') return;
+
+          let targetEl = null;
+          try {
+            targetEl = document.querySelector(href);
+          } catch (err) {
+            return;
+          }
+
+          if (targetEl) {
+            e.preventDefault();
+            if (window.lenis) {
+              window.lenis.scrollTo(targetEl, {
+                offset: -50,
+                duration: 1.25,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+              });
+            } else {
+              const rect = targetEl.getBoundingClientRect();
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+              window.scrollTo({
+                top: rect.top + scrollTop - 50,
+                behavior: 'smooth'
+              });
+            }
+
+            const targetHeading =
+              targetEl.querySelector(
+                '.section-blur-heading, .expert-care-title, .testimonial-main-title, .faq-main-title, .footer-cta-headline, .hiw-headline'
+              ) ||
+              (targetEl.nextElementSibling &&
+                targetEl.nextElementSibling.querySelector(
+                  '.section-blur-heading, .expert-care-title, .testimonial-main-title, .faq-main-title, .footer-cta-headline, .hiw-headline'
+                ));
+
+            if (targetHeading && typeof gsap !== 'undefined') {
+              gsap.fromTo(
+                targetHeading,
+                {
+                  opacity: 0,
+                  y: 28,
+                  filter: 'blur(16px)',
+                  scale: 0.98
+                },
+                {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  filter: 'blur(0px)',
+                  duration: 1.2,
+                  ease: 'power3.out',
+                  delay: 0.25,
+                  clearProps: 'filter,transform'
+                }
+              );
+            }
+          }
+        });
+      });
+    }
   }
+
+  /* ═══════════════════════════════════════════════════════
+     NEWSLETTER SUBMISSION
+  ═══════════════════════════════════════════════════════ */
+  window.submitNewsletter = function (event) {
+    if (event) event.preventDefault();
+    const input = document.querySelector('.newsletter-input');
+    if (input && input.value) {
+      const toastEl = document.getElementById('actionToast');
+      const toastMsg = document.getElementById('toastMessage');
+      if (toastEl && typeof bootstrap !== 'undefined') {
+        if (toastMsg) toastMsg.textContent = 'Thank you for subscribing to Elora Rx wellness updates!';
+        const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+        toast.show();
+      }
+      input.value = '';
+    }
+  };
 
   /* ═══════════════════════════════════════════════════════
      KICKOFF

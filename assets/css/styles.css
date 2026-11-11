@@ -1338,7 +1338,9 @@
   .care-results-title,
   .testimonial-main-title,
   .faq-main-title,
-  .footer-cta-headline {
+  .footer-cta-headline,
+  .ap-hero-title,
+  .expert-care-title {
     will-change: transform, opacity, filter;
   }
 
@@ -8181,12 +8183,6 @@
       font-size: 0.88rem;
     }
 
-    .vial-floating-card {
-      position: static;
-      margin-top: 12px;
-      width: 100%;
-    }
-
   }
 
   .why-semaglutide-card-title {
@@ -9118,10 +9114,6 @@
       gap: 14px;
     }
 
-    .expert-care-visual {
-      max-width: 320px;
-    }
-
     .expert-care-card {
       padding: 20px 22px;
       border-radius: 18px;
@@ -9319,11 +9311,11 @@
 
   .intake-stack-card:hover {
     border-color: rgba(223, 103, 76, 0.5);
-    background: #fffcfb;
+    background: #fffaf4;
   }
 
   .intake-stack-card.is-selected {
-    background: #fff5f2;
+    background: #fffaf4;
     border-color: #df674c;
   }
 
@@ -9476,14 +9468,14 @@
   }
 
   .intake-sex-pill.is-selected {
-    background: #fff5f2;
+    background: #fffaf4;
     border-color: #df674c;
     color: #df674c;
   }
 
   /* Live BMI summary card */
   .intake-bmi-pill {
-    background: #fff8f6;
+    background: #fffaf4;
     border: 1.5px solid rgba(223, 103, 76, 0.35);
     border-radius: 12px;
     padding: 14px 20px;

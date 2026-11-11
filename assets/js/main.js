@@ -524,11 +524,11 @@ function initHeadingBlurAnimation() {
   // 1. Hero Heading lines: Staggered cinematic blur reveal helper
   window.playHeroHeadingReveal = function (delay = 0.15) {
     const heroHeadingLines = document.querySelectorAll(
-      '.hero-title .heading-line, .product-hero-title .heading-line'
+      '.hero-title .heading-line, .product-hero-title .heading-line, .ap-hero-title .heading-line'
     );
     const targetElements = heroHeadingLines.length
       ? heroHeadingLines
-      : document.querySelectorAll('.hero-title, .product-hero-title');
+      : document.querySelectorAll('.hero-title, .product-hero-title, .ap-hero-title');
 
     if (!targetElements.length || typeof gsap === 'undefined') return;
 
@@ -574,6 +574,7 @@ function initHeadingBlurAnimation() {
       { id: '#treatmentsHeadline', selector: '.treatments-main-headline' },
       { id: '#resultsTitle', selector: '.results-title' },
       { id: '#careResultsTitle', selector: '.care-results-title' },
+      { id: '#expertCareTitle', selector: '.expert-care-title' },
       { id: '#reviewsHeadline', selector: '.testimonial-main-title' },
       { id: '#faqMainTitle', selector: '.faq-main-title' },
       { id: '#footerCtaHeadline', selector: '.footer-cta-headline' }
@@ -657,7 +658,7 @@ function initHeadingBlurAnimation() {
           }
 
           const targetHeading = targetEl.querySelector(
-            '.section-blur-heading, .categories-title, .treatments-main-headline, .results-title, .care-results-title, .testimonial-main-title, .faq-main-title, .footer-cta-headline, .product-about-title, .semaglutide-stats-title, .why-semaglutide-title'
+            '.section-blur-heading, .categories-title, .treatments-main-headline, .results-title, .care-results-title, .expert-care-title, .testimonial-main-title, .faq-main-title, .footer-cta-headline, .product-about-title, .semaglutide-stats-title, .why-semaglutide-title'
           );
           if (targetHeading) {
             gsap.fromTo(
