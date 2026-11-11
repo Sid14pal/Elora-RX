@@ -277,7 +277,8 @@
             <a href="login.html" class="btn btn-link nav-signin-btn text-decoration-none" id="signInBtn">
               Sign In
             </a>
-            <a href="#treatmentCustomization" class="btn btn-crimson-pill d-inline-flex align-items-center gap-2" id="navGetStartedBtn">
+            <a href="#treatmentCustomization" class="btn btn-crimson-pill d-inline-flex align-items-center gap-2"
+              id="navGetStartedBtn">
               <span>Get Started</span>
               <span class="arrow-circle" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -419,7 +420,7 @@
 
       <!-- Section 3: Bottom Action Panel -->
       <div class="mobile-sidebar-footer px-3 py-3 border-top">
-        <a href="#treatmentCustomization"
+        <a href="intake.html?treatment=weight-loss"
           class="btn btn-crimson-pill w-100 d-inline-flex align-items-center justify-content-between mb-2">
           <span>See If You Qualify</span>
           <span class="arrow-circle" aria-hidden="true">
@@ -646,11 +647,11 @@
                 </div>
                 <!-- CTA Button (Directly Below Treatment Customization Card) -->
                 <div class="product-cta-wrap">
-                  <button type="button"
-                    class="btn btn-hero-cta w-100 d-inline-flex align-items-center justify-content-center"
+                  <a href="intake.html?treatment=weight-loss"
+                    class="btn btn-hero-cta w-100 d-inline-flex align-items-center justify-content-center text-decoration-none"
                     id="productHeroCtaBtn">
                     <span class="cta-label">See If You Qualify</span>
-                  </button>
+                  </a>
                 </div>
 
                 <!-- Medical Provider Advisory Notice -->
@@ -1018,7 +1019,8 @@
 
         <!-- Centered Bottom Action CTA (Full Page Width) -->
         <div class="categories-action-wrap text-center mt-4 mt-lg-5 pt-2">
-          <a href="#treatmentCustomization" class="btn btn-hero-cta d-inline-flex align-items-center text-decoration-none" id="whySemaglutideCtaBtn">
+          <a href="#treatmentCustomization"
+            class="btn btn-hero-cta d-inline-flex align-items-center text-decoration-none" id="whySemaglutideCtaBtn">
             <span class="cta-label">Get Started Today</span>
             <span class="cta-arrow-circle" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -2072,7 +2074,8 @@
             <ul class="footer-nav-list list-unstyled mb-0">
               <li><a href="semaglutide.html" class="footer-nav-link">Semaglutide GLP-1</a></li>
               <li><a href="semaglutide.html" class="footer-nav-link">Tirzepatide Agonist</a></li>
-              <li><a href="index.html#popularTreatmentsSection" class="footer-nav-link">Hormone Health &amp; HRT</a></li>
+              <li><a href="index.html#popularTreatmentsSection" class="footer-nav-link">Hormone Health &amp; HRT</a>
+              </li>
               <li><a href="index.html#popularTreatmentsSection" class="footer-nav-link">Hair &amp; Scalp Growth</a></li>
               <li><a href="index.html#popularTreatmentsSection" class="footer-nav-link">Longevity &amp; NAD+</a></li>
               <li><a href="index.html#popularTreatmentsSection" class="footer-nav-link">Sexual Health Vitality</a></li>
@@ -2586,6 +2589,16 @@
         if (qtyUnitLabel) qtyUnitLabel.textContent = currentQty === 1 ? 'Month' : 'Months';
         if (qtyMinusBtn) qtyMinusBtn.disabled = (currentQty <= 1);
         if (qtyPlusBtn) qtyPlusBtn.disabled = (currentQty >= 6);
+
+        updateCtaHref();
+      }
+
+      function updateCtaHref() {
+        const heroCta = document.getElementById('productHeroCtaBtn');
+        if (heroCta) {
+          const strength = strengthSelect ? strengthSelect.value : '0.25';
+          heroCta.setAttribute('href', `intake.html?treatment=weight-loss&dose=${encodeURIComponent(strength)}&qty=${currentQty}`);
+        }
       }
 
       // Strength dropdown change
@@ -2593,6 +2606,7 @@
         if (strengthHint && dosingHints[strengthSelect.value]) {
           strengthHint.textContent = dosingHints[strengthSelect.value];
         }
+        updateCtaHref();
       });
 
       // Quantity buttons

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinical Health Intake — ELORA RX Telemedicine</title>
+  <meta name="description"
+    content="Complete your quick 5-step clinical intake questionnaire to get matched with a board-certified physician for personalized prescription care.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 29C16 29 6 23 6 12C6 6 10 2 15 2C15.5 6 14 11 11 15C14 15 17.5 12.5 19 9C19 14.5 17 21 16 29Z' fill='%23a92237'/%3E%3Cpath d='M16 29C16 29 26 23 26 12C26 6 22 2 17 2C16.5 6 18 11 21 15C18 15 14.5 12.5 13 9C13 14.5 15 21 16 29Z' fill='%23c92e46' fill-opacity='0.85'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts: DM Sans, Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Manrope:wght@200..800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 5.3.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="intake-page-wrap">
+
+  <!-- ========================================================
+       TOP AREA: STEP PROGRESS BAR & HEADER
+       ======================================================== -->
+  <header class="intake-topbar" id="intakeTopbar">
+    <div class="intake-topbar-inner">
+
+      <!-- 5-Segment Step Bar -->
+      <div class="intake-stepbar-segments" aria-label="Intake Progress Steps">
+        <div class="intake-stepbar-seg active" data-step="1"></div>
+        <div class="intake-stepbar-seg" data-step="2"></div>
+        <div class="intake-stepbar-seg" data-step="3"></div>
+        <div class="intake-stepbar-seg" data-step="4"></div>
+        <div class="intake-stepbar-seg" data-step="5"></div>
+      </div>
+
+      <!-- Topbar Meta: Logo, Step Count, Security -->
+      <div class="intake-topbar-meta">
+        <a class="intake-brand-mini" href="index.html" aria-label="ELORA RX Home">
+          <span>ELORA RX</span>
+        </a>
+        <span class="intake-step-count-label" id="stepCounterLabel">Step 1 of 5</span>
+        <span class="intake-step-security">
+          <i class="bi bi-shield-lock-fill" aria-hidden="true"></i>
+          <span class="d-none d-sm-inline">HIPAA Secure</span>
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================
+       MAIN QUESTIONNAIRE COLUMN (Matches Screenshot)
+       ======================================================== -->
+  <main class="intake-main">
+    <div class="intake-container">
+
+      <!-- Back Arrow (Above Question) -->
+      <button type="button" class="intake-back-arrow is-hidden" id="intakeBackBtn" aria-label="Go back to previous question">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- ══════════════════════════════════════════════════
+           STEP 1: SUPPORT NEEDED (Exact Screenshot Match!)
+           ══════════════════════════════════════════════════ -->
+      <div class="intake-step-pane active" data-step="1" id="stepPane1">
+        <h1 class="intake-question-title">What kind of support are you looking for?</h1>
+        <p class="intake-question-subtitle">Select one option</p>
+
+        <div class="intake-cards-stack" id="step1Stack">
+
+          <div class="intake-stack-card" data-val="medical-expert">
+            <span class="intake-card-main-text">I want to talk to a medical expert</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card is-selected" data-val="prescription-online">
+            <span class="intake-card-main-text">I want to get a prescription online</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="feel-better">
+            <span class="intake-card-main-text">I want to feel better</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="menopause-education">
+            <span class="intake-card-main-text">I want peri/menopause education</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="all-above">
+            <span class="intake-card-main-text">All of the above</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           STEP 2: TREATMENT AREA FOCUS
+           ══════════════════════════════════════════════════ -->
+      <div class="intake-step-pane" data-step="2" id="stepPane2">
+        <h2 class="intake-question-title">Which treatment area would you like to explore?</h2>
+        <p class="intake-question-subtitle">Select your primary care interest</p>
+
+        <div class="intake-cards-stack" id="step2Stack">
+
+          <div class="intake-stack-card is-selected" data-val="weight-loss">
+            <div class="intake-card-label-wrap">
+              <span class="intake-card-main-text">Medical Weight Loss</span>
+              <span class="intake-card-sub-text">Compounded Semaglutide &amp; Tirzepatide (GLP-1)</span>
+            </div>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="hair-regrowth">
+            <div class="intake-card-label-wrap">
+              <span class="intake-card-main-text">Hair Regrowth &amp; Retention</span>
+              <span class="intake-card-sub-text">Prescription Minoxidil, Finasteride &amp; Biotin blends</span>
+            </div>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="hormone-vitality">
+            <div class="intake-card-label-wrap">
+              <span class="intake-card-main-text">Hormone Health &amp; Vitality</span>
+              <span class="intake-card-sub-text">Enclomiphene, TRT &amp; metabolic hormone balancing</span>
+            </div>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="sexual-health">
+            <div class="intake-card-label-wrap">
+              <span class="intake-card-main-text">Sexual Health &amp; ED Care</span>
+              <span class="intake-card-sub-text">Customized Tadalafil and Sildenafil protocols</span>
+            </div>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="dermatology">
+            <div class="intake-card-label-wrap">
+              <span class="intake-card-main-text">Dermatology &amp; Anti-Aging</span>
+              <span class="intake-card-sub-text">Physician-grade Tretinoin &amp; custom skin serums</span>
+            </div>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="longevity">
+            <div class="intake-card-label-wrap">
+              <span class="intake-card-main-text">Longevity &amp; Peptides</span>
+              <span class="intake-card-sub-text">NAD+, Sermorelin &amp; cellular wellness therapy</span>
+            </div>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           STEP 3: MEDICAL HISTORY & SAFETY SCREENER
+           ══════════════════════════════════════════════════ -->
+      <div class="intake-step-pane" data-step="3" id="stepPane3">
+        <h2 class="intake-question-title">Do any of the following apply to you?</h2>
+        <p class="intake-question-subtitle">Select an option to help your doctor review your profile</p>
+
+        <div class="intake-cards-stack" id="step3Stack">
+
+          <div class="intake-stack-card is-selected" data-val="none" data-exclusive="true">
+            <span class="intake-card-main-text">None of the above — I have no major medical conditions</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="mtc-history">
+            <span class="intake-card-main-text">Personal or family history of medullary thyroid cancer (MTC) or MEN 2</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="pancreas-kidney">
+            <span class="intake-card-main-text">History of pancreatitis, gallbladder complications, or kidney disease</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="pregnancy">
+            <span class="intake-card-main-text">Currently pregnant, planning pregnancy within 3 months, or breastfeeding</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="medications">
+            <span class="intake-card-main-text">I take daily prescription medications</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="intake-stack-card" data-val="allergies">
+            <span class="intake-card-main-text">I have known drug allergies</span>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           STEP 4: STATE, DEMOGRAPHICS & BMI
+           ══════════════════════════════════════════════════ -->
+      <div class="intake-step-pane" data-step="4" id="stepPane4">
+        <h2 class="intake-question-title">Where should your physician be licensed?</h2>
+        <p class="intake-question-subtitle">Telehealth regulations require matching you with a doctor licensed in your state</p>
+
+        <!-- State Selector Box -->
+        <div class="intake-input-box">
+          <label class="intake-box-label" for="intakeStateSelect">State of Residence *</label>
+          <select class="intake-bare-select" id="intakeStateSelect" required>
+            <option value="California" selected>California (CA)</option>
+            <option value="Texas">Texas (TX)</option>
+            <option value="Florida">Florida (FL)</option>
+            <option value="New York">New York (NY)</option>
+            <option value="Illinois">Illinois (IL)</option>
+            <option value="Pennsylvania">Pennsylvania (PA)</option>
+            <option value="Ohio">Ohio (OH)</option>
+            <option value="Georgia">Georgia (GA)</option>
+            <option value="North Carolina">North Carolina (NC)</option>
+            <option value="Michigan">Michigan (MI)</option>
+            <option value="New Jersey">New Jersey (NJ)</option>
+            <option value="Virginia">Virginia (VA)</option>
+            <option value="Washington">Washington (WA)</option>
+            <option value="Arizona">Arizona (AZ)</option>
+            <option value="Massachusetts">Massachusetts (MA)</option>
+            <option value="Tennessee">Tennessee (TN)</option>
+            <option value="Indiana">Indiana (IN)</option>
+            <option value="Missouri">Missouri (MO)</option>
+            <option value="Maryland">Maryland (MD)</option>
+            <option value="Wisconsin">Wisconsin (WI)</option>
+            <option value="Colorado">Colorado (CO)</option>
+            <option value="Minnesota">Minnesota (MN)</option>
+            <option value="South Carolina">South Carolina (SC)</option>
+            <option value="Alabama">Alabama (AL)</option>
+            <option value="Louisiana">Louisiana (LA)</option>
+            <option value="Kentucky">Kentucky (KY)</option>
+            <option value="Oregon">Oregon (OR)</option>
+            <option value="Oklahoma">Oklahoma (OK)</option>
+            <option value="Connecticut">Connecticut (CT)</option>
+            <option value="Utah">Utah (UT)</option>
+            <option value="Nevada">Nevada (NV)</option>
+            <option value="Iowa">Iowa (IA)</option>
+            <option value="Arkansas">Arkansas (AR)</option>
+            <option value="Kansas">Kansas (KS)</option>
+            <option value="Mississippi">Mississippi (MS)</option>
+            <option value="New Mexico">New Mexico (NM)</option>
+            <option value="Nebraska">Nebraska (NE)</option>
+            <option value="Idaho">Idaho (ID)</option>
+            <option value="West Virginia">West Virginia (WV)</option>
+            <option value="Hawaii">Hawaii (HI)</option>
+            <option value="New Hampshire">New Hampshire (NH)</option>
+            <option value="Maine">Maine (ME)</option>
+            <option value="Montana">Montana (MT)</option>
+            <option value="Rhode Island">Rhode Island (RI)</option>
+            <option value="Delaware">Delaware (DE)</option>
+            <option value="South Dakota">South Dakota (SD)</option>
+            <option value="North Dakota">North Dakota (ND)</option>
+            <option value="Alaska">Alaska (AK)</option>
+            <option value="District of Columbia">District of Columbia (DC)</option>
+            <option value="Vermont">Vermont (VT)</option>
+            <option value="Wyoming">Wyoming (WY)</option>
+          </select>
+        </div>
+
+        <!-- Date of Birth Box -->
+        <div class="intake-input-box">
+          <label class="intake-box-label">Date of Birth (Must be 18+)</label>
+          <div class="d-flex gap-2">
+            <input type="number" class="intake-bare-input text-center" id="dobMonth" placeholder="MM" min="1" max="12" value="06" style="max-width: 60px;">
+            <span class="text-muted align-self-center">/</span>
+            <input type="number" class="intake-bare-input text-center" id="dobDay" placeholder="DD" min="1" max="31" value="15" style="max-width: 60px;">
+            <span class="text-muted align-self-center">/</span>
+            <input type="number" class="intake-bare-input text-center" id="dobYear" placeholder="YYYY" min="1920" max="2008" value="1992" style="max-width: 90px;">
+          </div>
+        </div>
+
+        <!-- Biological Sex -->
+        <label class="intake-box-label mb-2">Biological Sex at Birth (Clinical dosage reference)</label>
+        <div class="intake-sex-row">
+          <div class="intake-sex-pill is-selected" data-sex="female">
+            <i class="bi bi-gender-female me-1"></i> Female
+          </div>
+          <div class="intake-sex-pill" data-sex="male">
+            <i class="bi bi-gender-male me-1"></i> Male
+          </div>
+        </div>
+
+        <!-- Height & Weight -->
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <div class="intake-input-box mb-0">
+              <label class="intake-box-label">Height</label>
+              <div class="d-flex gap-2">
+                <select class="intake-bare-select" id="heightFt">
+                  <option value="4">4 ft</option>
+                  <option value="5" selected>5 ft</option>
+                  <option value="6">6 ft</option>
+                  <option value="7">7 ft</option>
+                </select>
+                <select class="intake-bare-select" id="heightIn">
+                  <option value="0">0 in</option>
+                  <option value="1">1 in</option>
+                  <option value="2">2 in</option>
+                  <option value="3">3 in</option>
+                  <option value="4">4 in</option>
+                  <option value="5">5 in</option>
+                  <option value="6">6 in</option>
+                  <option value="7" selected>7 in</option>
+                  <option value="8">8 in</option>
+                  <option value="9">9 in</option>
+                  <option value="10">10 in</option>
+                  <option value="11">11 in</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="intake-input-box mb-0">
+              <label class="intake-box-label" for="weightLbs">Weight (lbs)</label>
+              <input type="number" class="intake-bare-input" id="weightLbs" value="168" min="70" max="600">
+            </div>
+          </div>
+        </div>
+
+        <!-- Live BMI Pill -->
+        <div class="intake-bmi-pill">
+          <div>
+            <span class="small fw-bold text-uppercase d-block" style="color: #df674c;">Calculated BMI</span>
+            <span class="small text-muted" id="bmiMeta">Elevated metabolic range • Qualified for care</span>
+          </div>
+          <span class="intake-bmi-val" id="bmiScore">26.3</span>
+        </div>
+
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           STEP 5: CONTACT INFORMATION & CONFIRMATION
+           ══════════════════════════════════════════════════ -->
+      <div class="intake-step-pane" data-step="5" id="stepPane5">
+        <h2 class="intake-question-title">Where should your doctor send your clinical plan?</h2>
+        <p class="intake-question-subtitle">We'll create your private patient portal and deliver your doctor's evaluation here</p>
+
+        <div class="row g-2 mb-2">
+          <div class="col-6">
+            <div class="intake-input-box mb-0">
+              <label class="intake-box-label" for="firstName">First Name *</label>
+              <input type="text" class="intake-bare-input" id="firstName" placeholder="Jane" required>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="intake-input-box mb-0">
+              <label class="intake-box-label" for="lastName">Last Name *</label>
+              <input type="text" class="intake-bare-input" id="lastName" placeholder="Doe" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="intake-input-box">
+          <label class="intake-box-label" for="emailAddress">Email Address *</label>
+          <input type="email" class="intake-bare-input" id="emailAddress" placeholder="jane.doe@example.com" required>
+        </div>
+
+        <div class="intake-input-box">
+          <label class="intake-box-label" for="phoneNumber">Mobile Phone * (For prescription SMS alerts)</label>
+          <input type="tel" class="intake-bare-input" id="phoneNumber" placeholder="(555) 000-0000" required>
+        </div>
+
+        <!-- Consultation Preference -->
+        <label class="intake-box-label mb-2">Preferred Consultation Format:</label>
+        <div class="intake-cards-stack mb-3">
+          <div class="intake-stack-card is-selected consult-card" data-val="async">
+            <div>
+              <span class="intake-card-main-text d-block">Asynchronous Clinical Messaging</span>
+              <span class="intake-card-sub-text">Fastest option — Doctor reviews answers and messages in 2-4 hours</span>
+            </div>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          <div class="intake-stack-card consult-card" data-val="video">
+            <div>
+              <span class="intake-card-main-text d-block">Scheduled Telehealth Video Visit</span>
+              <span class="intake-card-sub-text">Meet face-to-face with your state-licensed physician</span>
+            </div>
+            <span class="intake-check-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10.5L8 14.5L16 6.5" stroke="#df674c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Consent Check -->
+        <div class="form-check mt-3">
+          <input class="form-check-input" type="checkbox" id="consentCheck" checked required>
+          <label class="form-check-label small text-muted" for="consentCheck">
+            I confirm that all health information is accurate and agree to the
+            <a href="#" class="text-decoration-underline" style="color: #df674c;">Telehealth Informed Consent</a> and
+            <a href="#" class="text-decoration-underline" style="color: #df674c;">HIPAA Notice</a>.
+          </label>
+        </div>
+
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           SUCCESS / COMPLETION STATE
+           ══════════════════════════════════════════════════ -->
+      <div class="intake-success-container" id="intakeSuccessContainer">
+        <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle mb-3"
+          style="background: #e8f5e9; color: #2e7d32; width: 68px; height: 68px;">
+          <i class="bi bi-check-circle-fill fs-2"></i>
+        </div>
+        <h2 class="intake-question-title">Intake Successfully Submitted!</h2>
+        <p class="intake-question-subtitle">
+          Your questionnaire has been securely transmitted. You've been paired with a licensed clinical physician.
+        </p>
+
+        <!-- Matched Doctor Card -->
+        <div class="intake-doctor-card">
+          <img src="assets/images/expert-care-doctor-warm.png" alt="Dr. Robert Hayes, MD" class="intake-doctor-img">
+          <div>
+            <span class="badge mb-2 px-3 py-1 rounded-pill" style="background: #fff1f2; color: #df674c; border: 1px solid rgba(223, 103, 76, 0.3);">
+              <i class="bi bi-patch-check-fill me-1"></i> MATCHED PROVIDER
+            </span>
+            <h3 class="h5 fw-bold mb-1">Dr. Robert Hayes, MD</h3>
+            <p class="small text-muted mb-2">
+              Board Certified in Internal Medicine • Licensed in <span id="matchedDoctorState">California</span>
+            </p>
+            <span class="badge bg-success-subtle text-success border border-success-subtle">
+              <i class="bi bi-clock-history me-1"></i> Reviewing Your Chart (Avg. 2 Hours)
+            </span>
+          </div>
+        </div>
+
+        <!-- Next Steps Timeline -->
+        <div class="mt-4 mb-4">
+          <div class="intake-timeline-item">
+            <span class="intake-timeline-dot"><i class="bi bi-check"></i></span>
+            <div>
+              <strong class="d-block text-dark">1. Clinical Chart Evaluation</strong>
+              <span class="small text-muted">Dr. Hayes reviews your health goals, medical screener, and dosage requirements.</span>
+            </div>
+          </div>
+          <div class="intake-timeline-item">
+            <span class="intake-timeline-dot"><i class="bi bi-check"></i></span>
+            <div>
+              <strong class="d-block text-dark">2. Custom Prescription Formulated</strong>
+              <span class="small text-muted">If approved, your tailored prescription is sent to our licensed compounding pharmacy.</span>
+            </div>
+          </div>
+          <div class="intake-timeline-item">
+            <span class="intake-timeline-dot"><i class="bi bi-check"></i></span>
+            <div>
+              <strong class="d-block text-dark">3. Discreet 2-Day Cold-Chain Home Delivery</strong>
+              <span class="small text-muted">Shipped directly to your doorstep in discreet temperature-regulated packaging.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mt-4 pt-3 border-top">
+          <a href="login.html" class="btn btn-intake-next text-decoration-none">
+            Access Patient Portal
+          </a>
+          <a href="index.html" class="btn btn-outline-secondary rounded-pill px-4 py-3 text-decoration-none">
+            Return to Homepage
+          </a>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div class="intake-error-message" id="intakeErrorMessage" role="alert"></div>
+
+      <!-- ══════════════════════════════════════════════════
+           CENTERED BOTTOM ACTION PILL BUTTON (Matches Screenshot)
+           ══════════════════════════════════════════════════ -->
+      <div class="intake-bottom-action" id="intakeBottomAction">
+        <button type="button" class="btn-intake-next" id="intakeNextBtn">
+          Next
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Intake Interactive Script -->
+  <script src="assets/js/intake.js?v=2.0"></script>
+
+</body>
+
+</html>

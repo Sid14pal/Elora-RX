@@ -1026,9 +1026,12 @@ function initTreatmentShowcase() {
       }, 35);
     });
 
-    // Click: inactive hyperlink - prevent popup, modal, and navigation action
+    // Click: allow navigation if card has a valid destination link
     card.addEventListener('click', (e) => {
-      e.preventDefault();
+      const href = card.getAttribute('href');
+      if (!href || href === '#' || href === 'javascript:void(0)') {
+        e.preventDefault();
+      }
     });
   });
 
@@ -1693,14 +1696,16 @@ window.submitNewsletter = function (event) {
 };
 
 /**
- * Global Product PDP CTA Handler (Intake confirmation without modal)
+ * Global Product PDP CTA Handler (Intake confirmation & navigation)
  */
 document.addEventListener('DOMContentLoaded', () => {
   const heroCta = document.getElementById('productHeroCtaBtn');
   if (heroCta) {
-    heroCta.addEventListener('click', () => {
-      if (typeof showToast === 'function') {
-        showToast('Prescription protocol initiated! Ready for physician intake.', 'success');
+    heroCta.addEventListener('click', (e) => {
+      const href = heroCta.getAttribute('href');
+      if (!href || href === '#' || href === 'javascript:void(0)') {
+        e.preventDefault();
+        window.location.href = 'intake.html?treatment=weight-loss';
       }
     });
   }
