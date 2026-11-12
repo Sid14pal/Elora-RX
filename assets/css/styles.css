@@ -145,35 +145,37 @@
   /* Emblem & Halos */
   .preloader-emblem-wrap {
     position: relative;
-    width: 96px;
-    height: 96px;
+    width: 124px;
+    height: 124px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 24px;
+    margin-bottom: 26px;
     will-change: transform, filter;
   }
 
   .preloader-emblem-halo {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid rgba(244, 117, 77, 0.25);
     pointer-events: none;
   }
 
   .preloader-emblem-halo.halo-1 {
-    inset: -12px;
+    inset: -14px;
     animation: preloaderHaloSpin 8s linear infinite;
-    border-top-color: rgba(244, 117, 77, 0.7);
+    border: 1.5px solid rgba(244, 117, 77, 0.35);
+    border-top-color: #ff7b5a;
     border-right-color: transparent;
+    box-shadow: 0 0 22px rgba(244, 117, 77, 0.3);
   }
 
   .preloader-emblem-halo.halo-2 {
-    inset: -22px;
+    inset: -28px;
     animation: preloaderHaloSpinRev 12s linear infinite;
-    border-bottom-color: rgba(217, 56, 80, 0.5);
+    border: 1px dashed rgba(217, 56, 80, 0.45);
+    border-bottom-color: #ff9b7d;
     border-left-color: transparent;
-    opacity: 0.7;
+    opacity: 0.85;
   }
 
   @keyframes preloaderHaloSpin {
@@ -197,27 +199,44 @@
   }
 
   .preloader-icon-box {
-    width: 72px;
-    height: 72px;
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    width: 94px;
+    height: 94px;
+    border-radius: 28px;
+    background: radial-gradient(circle at 50% 35%, rgba(255, 120, 90, 0.16) 0%, rgba(184, 38, 61, 0.08) 50%, rgba(20, 8, 12, 0.75) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 16px 36px -8px rgba(184, 38, 61, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 24px 56px -8px rgba(184, 38, 61, 0.65),
+      0 0 35px rgba(244, 117, 77, 0.28),
+      inset 0 1.5px 1.5px rgba(255, 255, 255, 0.45),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.5);
   }
 
   .preloader-tulip-svg {
-    width: 44px;
-    height: 44px;
-    filter: drop-shadow(0 4px 12px rgba(244, 117, 77, 0.4));
+    width: 72px;
+    height: 72px;
+    filter: drop-shadow(0 6px 18px rgba(244, 80, 60, 0.75)) drop-shadow(0 2px 6px rgba(184, 38, 61, 0.5));
+    animation: preloaderTulipBreathe 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes preloaderTulipBreathe {
+    0% {
+      transform: scale(1);
+      filter: drop-shadow(0 6px 16px rgba(244, 80, 60, 0.65)) drop-shadow(0 2px 4px rgba(184, 38, 61, 0.45));
+    }
+
+    100% {
+      transform: scale(1.04);
+      filter: drop-shadow(0 8px 24px rgba(255, 95, 75, 0.85)) drop-shadow(0 0 12px rgba(244, 117, 77, 0.55));
+    }
   }
 
   .preloader-petal {
-    transform-origin: 18px 33px;
+    transform-origin: 24px 42px;
   }
 
   /* Brand Typography */

@@ -43,6 +43,7 @@ function initSitePreloader() {
   const petalLeft = preloader.querySelector('.petal-left');
   const petalRight = preloader.querySelector('.petal-right');
   const petalCenter = preloader.querySelector('.petal-center');
+  const petalBase = preloader.querySelector('.petal-base');
 
   // Lock scroll during loading
   document.body.classList.add('is-loading');
@@ -74,9 +75,10 @@ function initSitePreloader() {
   if (typeof gsap !== 'undefined') {
     // Initial setup of preloader elements
     gsap.set(content, { opacity: 0, scale: 0.94, y: 16 });
-    if (petalLeft) gsap.set(petalLeft, { scale: 0, transformOrigin: '18px 33px' });
-    if (petalRight) gsap.set(petalRight, { scale: 0, transformOrigin: '18px 33px' });
-    if (petalCenter) gsap.set(petalCenter, { scale: 0, transformOrigin: '18px 21px' });
+    if (petalBase) gsap.set(petalBase, { scale: 0, opacity: 0, transformOrigin: '24px 42px' });
+    if (petalLeft) gsap.set(petalLeft, { scale: 0, transformOrigin: '24px 42px' });
+    if (petalRight) gsap.set(petalRight, { scale: 0, transformOrigin: '24px 42px' });
+    if (petalCenter) gsap.set(petalCenter, { scale: 0, transformOrigin: '24px 38px' });
 
     const preloaderTl = gsap.timeline();
 
@@ -90,16 +92,24 @@ function initSitePreloader() {
     });
 
     // 2. Petals bloom with spring bounce
+    if (petalBase) {
+      preloaderTl.to(petalBase, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.35,
+        ease: 'power2.out'
+      }, '-=0.25');
+    }
     if (petalLeft && petalRight && petalCenter) {
       preloaderTl.to([petalLeft, petalRight], {
         scale: 1,
         duration: 0.55,
-        stagger: 0.1,
+        stagger: 0.08,
         ease: 'back.out(1.8)'
       }, '-=0.25');
       preloaderTl.to(petalCenter, {
         scale: 1,
-        duration: 0.4,
+        duration: 0.45,
         ease: 'back.out(2)'
       }, '-=0.35');
     }
